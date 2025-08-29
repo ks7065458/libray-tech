@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transaction History | LibraTech</title>
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="../transactions.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <a href="../index.html" class="logo">Libra<span>Tech</span></a>
+            <div class="nav-links">
+                <a href="../index.html"><i class="fas fa-home"></i> Home</a>
+                <a href="../books/browse-books.html"><i class="fas fa-book"></i> Books</a>
+                <a href="../members/manage-members.html"><i class="fas fa-users"></i> Members</a>
+                <a href="checkout.html" class="active"><i class="fas fa-exchange-alt"></i> Transactions</a>
+                <a href="../reports/overdue.html"><i class="fas fa-chart-bar"></i> Reports</a>
+                <a href="../admin/dashboard.html"><i class="fas fa-cog"></i> Admin</a>
+                <a href="#" id="login-btn"><i class="fas fa-sign-in-alt"></i> Login</a>
+            </div>
+            <div class="hamburger">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </nav>
+
+    <!-- History Header -->
+    <section class="history-header">
+        <div class="container">
+            <div>
+                <h1>Transaction History</h1>
+                <p>View complete history of library transactions</p>
+            </div>
+            <div class="history-actions">
+                <a href="checkout.html" class="btn secondary"><i class="fas fa-book"></i> New Checkout</a>
+                <a href="returns.html" class="btn outline"><i class="fas fa-undo"></i> Manage Returns</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- History Container -->
+    <div class="container">
+        <div class="history-tools">
+            <div class="search-filter">
+                <input type="text" id="history-search" placeholder="Search transactions...">
+                <div class="filter-group">
+                    <select id="filter-type">
+                        <option value="">All Types</option>
+                        <option value="checkout">Checkouts</option>
+                        <option value="return">Returns</option>
+                    </select>
+                    <select id="filter-status">
+                        <option value="">All Statuses</option>
+                        <option value="active">Active</option>
+                        <option value="returned">Returned</option>
+                        <option value="overdue">Overdue</option>
+                    </select>
+                    <input type="date" id="filter-date">
+                </div>
+            </div>
+        </div>
+
+        <!-- History Table -->
+        <div class="history-table-container">
+            <table class="history-table">
+                <thead>
+                    <tr>
+                        <th>Transaction ID</th>
+                        <th>Member</th>
+                        <th>Books</th>
+                        <th>Checkout Date</th>
+                        <th>Due Date</th>
+                        <th>Return Date</th>
+                        <th>Status</th>
+                        <th>Fines</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="history-body">
+                    <!-- Dynamically populated from MongoDB -->
+                </tbody>
+            </table>
+            
+            <div class="empty-state" id="no-results">
+                <i class="fas fa-inbox"></i>
+                <p>No transactions found matching your criteria</p>
+            </div>
+        </div>
+
+        <!-- Pagination -->
+        <div class="pagination">
+            <button class="btn outline" id="prev-page"><i class="fas fa-chevron-left"></i></button>
+            <span id="page-info">Page 1 of 5</span>
+            <button class="btn outline" id="next-page"><i class="fas fa-chevron-right"></i></button>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h3>LibraTech</h3>
+                    <p>Modern library management solution for schools, universities, and public libraries.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="../books/browse-books.html">Book Catalog</a></li>
+                        <li><a href="../members/manage-members.html">Member Directory</a></li>
+                        <li><a href="checkout.html">Checkout Books</a></li>
+                        <li><a href="../reports/overdue.html">Overdue Reports</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Support</h3>
+                    <ul>
+                        <li><a href="#">Documentation</a></li>
+                        <li><a href="#">API Reference</a></li>
+                        <li><a href="#">Help Center</a></li>
+                        <li><a href="#">Contact Us</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Newsletter</h3>
+                    <p>Subscribe to get updates on new features.</p>
+                    <form id="newsletter-form">
+                        <input type="email" placeholder="Your email address" required>
+                        <button type="submit" class="btn primary">Subscribe</button>
+                    </form>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 LibraTech. All rights reserved.</p>
+                <div class="footer-links">
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Transaction Details Modal -->
+    <div class="modal" id="details-modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Transaction Details</h2>
+            <div id="transaction-details"></div>
+        </div>
+    </div>
+
+    <script src="../scripts.js"></script>
+    <script>
+        // Mock data - Replace with MongoDB queries
+        const mockTransactions = [
+            {
+                id: "TX2023001",
+                member: { id: "MEM2023001", name: "John Doe" },
+                books: [
+                    { id: "BK2023001", title: "The Great Gatsby" },
+                    { id: "BK2023002", title: "To Kill a Mockingbird" }
+                ],
+                checkoutDate: "2023-09-01",
+                dueDate: "2023-09-15",
+                returnDate: "2023-09-14",
+                status: "returned",
+                fines: 0.00
+            },
+            {
+                id: "TX2023002",
+                member: { id: "MEM2023003", name: "Sarah Johnson" },
+                books: [
+                    { id: "BK2023004", title: "1984" }
+                ],
+                checkoutDate: "2023-09-10",
+                dueDate: "2023-09-24",
+                returnDate: null,
+                status: "active",
+                fines: 0.00
+            }
+        ];
+
+        let currentPage = 1;
+        const itemsPerPage = 10;
+
+        document.addEventListener('DOMContentLoaded', () => {
+            loadTransactions();
+            setupEventListeners();
+        });
+
+        function loadTransactions() {
+            // Simulate MongoDB fetch
+            // fetch(`/api/transactions?page=${currentPage}`)
+            //     .then(response => response.json())
+            //     .then(data => renderTransactions(data));
+            
+            renderTransactions(mockTransactions);
+        }
+
+        function renderTransactions(transactions) {
+            const tbody = document.getElementById('history-body');
+            tbody.innerHTML = '';
+
+            transactions.forEach(transaction => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${transaction.id}</td>
+                    <td>
+                        <div class="member-info">
+                            <div class="member-avatar-small">
+                                ${transaction.member.name.charAt(0)}
+                            </div>
+                            ${transaction.member.name}<br>
+                            <small>${transaction.member.id}</small>
+                        </div>
+                    </td>
+                    <td>
+                        ${transaction.books.map(book => `
+                            <div class="book-info">
+                                <i class="fas fa-book"></i>
+                                ${book.title}<br>
+                                <small>${book.id}</small>
+                            </div>
+                        `).join('')}
+                    </td>
+                    <td>${new Date(transaction.checkoutDate).toLocaleDateString()}</td>
+                    <td>${new Date(transaction.dueDate).toLocaleDateString()}</td>
+                    <td>${transaction.returnDate ? new Date(transaction.returnDate).toLocaleDateString() : '-'}</td>
+                    <td>
+                        <span class="status ${transaction.status}">
+                            ${transaction.status.charAt(0).toUpperCase() + transaction.status.slice(1)}
+                        </span>
+                    </td>
+                    <td>$${transaction.fines.toFixed(2)}</td>
+                    <td>
+                        <button class="btn outline" onclick="showDetails('${transaction.id}')">
+                            <i class="fas fa-eye"></i> View
+                        </button>
+                    </td>
+                `;
+                tbody.appendChild(row);
+            });
+
+            document.getElementById('no-results').style.display = 
+                transactions.length ? 'none' : 'flex';
+        }
+
+        function setupEventListeners() {
+            // Search
+            document.getElementById('history-search').addEventListener('input', filterTransactions);
+            
+            // Filters
+            document.getElementById('filter-type').addEventListener('change', filterTransactions);
+            document.getElementById('filter-status').addEventListener('change', filterTransactions);
+            document.getElementById('filter-date').addEventListener('change', filterTransactions);
+
+            // Pagination
+            document.getElementById('prev-page').addEventListener('click', () => {
+                if(currentPage > 1) {
+                    currentPage--;
+                    loadTransactions();
+                }
+            });
+
+            document.getElementById('next-page').addEventListener('click', () => {
+                currentPage++;
+                loadTransactions();
+            });
+        }
+
+        function filterTransactions() {
+            const searchTerm = document.getElementById('history-search').value.toLowerCase();
+            const typeFilter = document.getElementById('filter-type').value;
+            const statusFilter = document.getElementById('filter-status').value;
+            const dateFilter = document.getElementById('filter-date').value;
+
+            const filtered = mockTransactions.filter(transaction => {
+                const matchesSearch = transaction.id.toLowerCase().includes(searchTerm) ||
+                    transaction.member.name.toLowerCase().includes(searchTerm) ||
+                    transaction.books.some(book => book.title.toLowerCase().includes(searchTerm));
+
+                const matchesType = !typeFilter || 
+                    (typeFilter === 'checkout' && !transaction.returnDate) ||
+                    (typeFilter === 'return' && transaction.returnDate);
+
+                const matchesStatus = !statusFilter || 
+                    transaction.status === statusFilter;
+
+                const matchesDate = !dateFilter || 
+                    new Date(transaction.checkoutDate).toISOString().split('T')[0] === dateFilter;
+
+                return matchesSearch && matchesType && matchesStatus && matchesDate;
+            });
+
+            renderTransactions(filtered);
+        }
+
+        function showDetails(transactionId) {
+            // Simulate MongoDB fetch
+            // fetch(`/api/transactions/${transactionId}`)
+            const transaction = mockTransactions.find(t => t.id === transactionId);
+            
+            const details = `
+                <div class="transaction-detail">
+                    <h3>Transaction #${transaction.id}</h3>
+                    <div class="detail-grid">
+                        <div class="detail-item">
+                            <label>Member:</label>
+                            <p>${transaction.member.name} (${transaction.member.id})</p>
+                        </div>
+                        <div class="detail-item">
+                            <label>Checkout Date:</label>
+                            <p>${new Date(transaction.checkoutDate).toLocaleDateString()}</p>
+                        </div>
+                        <div class="detail-item">
+                            <label>Due Date:</label>
+                            <p>${new Date(transaction.dueDate).toLocaleDateString()}</p>
+                        </div>
+                        <div class="detail-item">
+                            <label>Return Date:</label>
+                            <p>${transaction.returnDate ? 
+                                new Date(transaction.returnDate).toLocaleDateString() : 'Not returned'}</p>
+                        </div>
+                        <div class="detail-item">
+                            <label>Status:</label>
+                            <p class="status ${transaction.status}">${transaction.status}</p>
+                        </div>
+                        <div class="detail-item">
+                            <label>Fines:</label>
+                            <p>$${transaction.fines.toFixed(2)}</p>
+                        </div>
+                    </div>
+                    
+                    <h4>Books:</h4>
+                    <ul class="book-list">
+                        ${transaction.books.map(book => `
+                            <li>
+                                <i class="fas fa-book"></i>
+                                ${book.title} (${book.id})
+                            </li>
+                        `).join('')}
+                    </ul>
+                </div>
+            `;
+
+            document.getElementById('transaction-details').innerHTML = details;
+            document.getElementById('details-modal').classList.add('show');
+        }
+
+        // Close modal
+        document.querySelector('#details-modal .close').addEventListener('click', () => {
+            document.getElementById('details-modal').classList.remove('show');
+        });
+    </script>
+</body>
+</html>

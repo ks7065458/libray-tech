@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout Books | LibraTech</title>
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="../transactions.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <a href="../index.html" class="logo">Libra<span>Tech</span></a>
+            <div class="nav-links">
+                <a href="../index.html"><i class="fas fa-home"></i> Home</a>
+                <a href="../books/browse-books.html"><i class="fas fa-book"></i> Books</a>
+                <a href="../members/manage-members.html"><i class="fas fa-users"></i> Members</a>
+                <a href="checkout.html" class="active"><i class="fas fa-exchange-alt"></i> Transactions</a>
+                <a href="../reports/overdue.html"><i class="fas fa-chart-bar"></i> Reports</a>
+                <a href="../admin/dashboard.html"><i class="fas fa-cog"></i> Admin</a>
+                <a href="#" id="login-btn"><i class="fas fa-sign-in-alt"></i> Login</a>
+            </div>
+            <div class="hamburger">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Checkout Header -->
+    <section class="checkout-header">
+        <div class="container">
+            <div>
+                <h1>Checkout Books</h1>
+                <p>Manage book checkouts and returns with our intuitive system</p>
+            </div>
+            <div class="checkout-actions">
+                <a href="returns.html" class="btn secondary"><i class="fas fa-undo"></i> Manage Returns</a>
+                <a href="history.html" class="btn outline"><i class="fas fa-history"></i> View History</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Checkout Container -->
+    <div class="container">
+        <div class="checkout-container">
+            <!-- Member Section -->
+            <div class="checkout-section">
+                <h2><i class="fas fa-user"></i> Member Information</h2>
+                <div class="member-search">
+                    <div class="barcode-scanner">
+                        <input type="text" id="member-barcode" placeholder="Scan member barcode">
+                        <button class="btn secondary" id="scan-member">
+                            <i class="fas fa-camera"></i> Scan
+                        </button>
+                    </div>
+                    <div class="member-details-card" id="member-details">
+                        <!-- Dynamically populated from MongoDB -->
+                        <div class="member-info-placeholder">
+                            <i class="fas fa-user-slash"></i>
+                            <p>No member selected</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Book Selection -->
+            <div class="checkout-section">
+                <h2><i class="fas fa-book"></i> Select Books</h2>
+                <div class="book-selection">
+                    <div class="book-search">
+                        <input type="text" id="book-search" placeholder="Search by title, author, or ISBN">
+                        <button class="btn secondary" id="scan-book">
+                            <i class="fas fa-camera"></i> Scan Book
+                        </button>
+                    </div>
+                    
+                    <!-- Search Results -->
+                    <div class="search-results" id="search-results">
+                        <!-- Dynamically populated from MongoDB -->
+                        <div class="empty-state">
+                            <i class="fas fa-search"></i>
+                            <p>Search for books to add to checkout</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Selected Books -->
+                    <div class="selected-books">
+                        <h3>Selected Items <span id="selected-count">(0)</span></h3>
+                        <div class="selected-items-list" id="selected-items">
+                            <!-- Dynamically populated -->
+                            <div class="empty-state">
+                                <i class="fas fa-book-open"></i>
+                                <p>No books selected</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Checkout Summary -->
+            <div class="checkout-summary">
+                <h2><i class="fas fa-receipt"></i> Checkout Summary</h2>
+                <div class="summary-card">
+                    <div class="summary-item">
+                        <span>Total Items:</span>
+                        <span id="summary-items">0</span>
+                    </div>
+                    <div class="summary-item">
+                        <span>Due Date:</span>
+                        <span id="summary-due-date">-</span>
+                    </div>
+                    <div class="summary-item">
+                        <span>Fines Due:</span>
+                        <span id="summary-fines">$0.00</span>
+                    </div>
+                    <div class="summary-item total">
+                        <span>Total Checkouts:</span>
+                        <span id="summary-total">0</span>
+                    </div>
+                    <button class="btn primary" id="complete-checkout">
+                        <i class="fas fa-check-circle"></i> Complete Checkout
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h3>LibraTech</h3>
+                    <p>Modern library management solution for schools, universities, and public libraries.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="../books/browse-books.html">Book Catalog</a></li>
+                        <li><a href="../members/manage-members.html">Member Directory</a></li>
+                        <li><a href="checkout.html">Checkout Books</a></li>
+                        <li><a href="../reports/overdue.html">Overdue Reports</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Support</h3>
+                    <ul>
+                        <li><a href="#">Documentation</a></li>
+                        <li><a href="#">API Reference</a></li>
+                        <li><a href="#">Help Center</a></li>
+                        <li><a href="#">Contact Us</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Newsletter</h3>
+                    <p>Subscribe to get updates on new features.</p>
+                    <form id="newsletter-form">
+                        <input type="email" placeholder="Your email address" required>
+                        <button type="submit" class="btn primary">Subscribe</button>
+                    </form>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 LibraTech. All rights reserved.</p>
+                <div class="footer-links">
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../scripts.js"></script>
+    <script>
+        // Mock data - Replace with MongoDB queries in real implementation
+        const mockMember = {
+            id: "MEM20230003",
+            name: "Sarah Johnson",
+            avatar: "https://randomuser.me/api/portraits/women/44.jpg",
+            status: "active",
+            checkouts: 2,
+            maxCheckouts: 10,
+            fines: 0.00
+        };
+
+        const mockBooks = [
+            {
+                id: "BK2023001",
+                title: "The Great Gatsby",
+                author: "F. Scott Fitzgerald",
+                isbn: "9780743273565",
+                available: true,
+                dueDate: ""
+            },
+            {
+                id: "BK2023002",
+                title: "To Kill a Mockingbird",
+                author: "Harper Lee",
+                isbn: "9780061120084",
+                available: false,
+                dueDate: "2023-09-20"
+            }
+        ];
+
+        // Checkout System Logic
+        let selectedBooks = [];
+
+        document.addEventListener('DOMContentLoaded', () => {
+            // Member Scanning Simulation
+            document.getElementById('scan-member').addEventListener('click', async () => {
+                const barcode = document.getElementById('member-barcode').value;
+                
+                // Simulate MongoDB lookup
+                // const member = await fetch(`/api/members/${barcode}`);
+                const member = mockMember;
+                
+                const memberHTML = `
+                    <div class="member-info">
+                        <div class="member-avatar">
+                            <img src="${member.avatar}" alt="${member.name}">
+                        </div>
+                        <div class="member-details">
+                            <h3>${member.name}</h3>
+                            <p>Member ID: ${member.id}</p>
+                            <div class="member-stats">
+                                <span class="status ${member.status}">${member.status}</span>
+                                <span>Checkouts: ${member.checkouts}/${member.maxCheckouts}</span>
+                                <span>Fines: $${member.fines.toFixed(2)}</span>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                document.getElementById('member-details').innerHTML = memberHTML;
+            });
+
+            // Book Search Functionality
+            document.getElementById('book-search').addEventListener('input', async (e) => {
+                const query = e.target.value;
+                if(query.length < 3) return;
+
+                // Simulate MongoDB search
+                // const results = await fetch(`/api/books?q=${query}`);
+                const results = mockBooks.filter(book => 
+                    book.title.toLowerCase().includes(query.toLowerCase()) ||
+                    book.author.toLowerCase().includes(query.toLowerCase()) ||
+                    book.isbn.includes(query)
+                );
+
+                const resultsHTML = results.map(book => `
+                    <div class="book-result ${book.available ? '' : 'unavailable'}">
+                        <div class="book-info">
+                            <h4>${book.title}</h4>
+                            <p>${book.author}</p>
+                            <small>ISBN: ${book.isbn}</small>
+                        </div>
+                        <div class="book-actions">
+                            ${book.available ? 
+                                `<button class="btn primary" onclick="addToCheckout('${book.id}')">
+                                    <i class="fas fa-cart-plus"></i> Add
+                                </button>` :
+                                `<span class="status">Due ${book.dueDate}</span>`
+                            }
+                        </div>
+                    </div>
+                `).join('');
+
+                document.getElementById('search-results').innerHTML = resultsHTML || 
+                    `<div class="empty-state"><i class="fas fa-times"></i><p>No books found</p></div>`;
+            });
+
+            // Complete Checkout
+            document.getElementById('complete-checkout').addEventListener('click', async () => {
+                if(!selectedBooks.length) {
+                    alert('Please select at least one book');
+                    return;
+                }
+
+                // Simulate MongoDB transaction creation
+                const transaction = {
+                    memberId: mockMember.id,
+                    books: selectedBooks,
+                    checkoutDate: new Date().toISOString(),
+                    dueDate: calculateDueDate(),
+                    status: 'checked-out'
+                };
+
+                // await fetch('/api/transactions', { method: 'POST', body: JSON.stringify(transaction) });
+                console.log('Transaction created:', transaction);
+                alert('Checkout completed successfully!');
+                window.location.href = 'history.html';
+            });
+        });
+
+        function addToCheckout(bookId) {
+            // const book = await fetch(`/api/books/${bookId}`);
+            const book = mockBooks.find(b => b.id === bookId);
+            selectedBooks.push(book);
+            updateSelectedItems();
+        }
+
+        function updateSelectedItems() {
+            document.getElementById('selected-count').textContent = `(${selectedBooks.length})`;
+            document.getElementById('summary-items').textContent = selectedBooks.length;
+            document.getElementById('summary-total').textContent = selectedBooks.length;
+            
+            const itemsHTML = selectedBooks.map(book => `
+                <div class="selected-item">
+                    <div class="book-info">
+                        <h4>${book.title}</h4>
+                        <p>${book.author}</p>
+                    </div>
+                    <button class="btn danger" onclick="removeFromCheckout('${book.id}')">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+            `).join('');
+
+            document.getElementById('selected-items').innerHTML = itemsHTML || 
+                `<div class="empty-state"><i class="fas fa-book-open"></i><p>No books selected</p></div>`;
+
+            updateDueDate();
+        }
+
+        function removeFromCheckout(bookId) {
+            selectedBooks = selectedBooks.filter(book => book.id !== bookId);
+            updateSelectedItems();
+        }
+
+        function calculateDueDate() {
+            const dueDate = new Date();
+            dueDate.setDate(dueDate.getDate() + 14); // 2-week loan period
+            return dueDate.toLocaleDateString();
+        }
+
+        function updateDueDate() {
+            document.getElementById('summary-due-date').textContent = calculateDueDate();
+        }
+    </script>
+</body>
+</html>

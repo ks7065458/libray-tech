@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LibraTech | Modern Library Management</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <a href="index.html" class="logo">Libra<span>Tech</span></a>
+            <div class="nav-links">
+                <a href="index.html" class="active"><i class="fas fa-home"></i> Home</a>
+                <a href="books/browse-books.html"><i class="fas fa-book"></i> Books</a>
+                <a href="members/manage-members.html"><i class="fas fa-users"></i> Members</a>
+                <a href="transactions/checkout.html"><i class="fas fa-exchange-alt"></i> Transactions</a>
+                <a href="reports/overdue.html"><i class="fas fa-chart-bar"></i> Reports</a>
+                <a href="admin/dashboard.html"><i class="fas fa-cog"></i> Admin</a>
+                <a href="admin/login.html" id="login-model"><i class="fas fa-sign-in-alt"></i> Login</a>
+            </div>
+            <div class="hamburger">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Modern Library Management System</h1>
+                <p>Streamline your library operations with our intuitive, cloud-based solution powered by MongoDB.</p>
+                <div class="hero-buttons">
+                    <a href="books/browse-books.html" class="btn primary">Browse Catalog</a>
+                    <a href="#" class="btn secondary" id="demo-btn">Request Demo</a>
+                </div>
+            </div>
+            <div class="hero-image">
+                <img src="assets/library-hero.png" alt="Library Illustration">
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features">
+        <div class="container">
+            <h2>Key Features</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-database"></i>
+                    </div>
+                    <h3>MongoDB Powered</h3>
+                    <p>Flexible, scalable NoSQL database for all your library data needs with fast queries.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <h3>Fully Responsive</h3>
+                    <p>Access your library system from any device with our mobile-friendly interface.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-barcode"></i>
+                    </div>
+                    <h3>Barcode Support</h3>
+                    <p>Scan books and member cards for quick checkouts and inventory management.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3>Advanced Analytics</h3>
+                    <p>Generate reports on circulation, popular titles, and member activity.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Quick Stats -->
+    <section class="stats">
+        <div class="container">
+            <div class="stat-card">
+                <h3 id="books-count">12,458</h3>
+                <p>Books in Collection</p>
+            </div>
+            <div class="stat-card">
+                <h3 id="members-count">2,341</h3>
+                <p>Active Members</p>
+            </div>
+            <div class="stat-card">
+                <h3 id="checkouts-count">458</h3>
+                <p>Checkouts This Week</p>
+            </div>
+            <div class="stat-card">
+                <h3 id="branches-count">5</h3>
+                <p>Library Branches</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Recent Activity -->
+    <section class="activity">
+        <div class="container">
+            <h2>Recent Activity</h2>
+            <div class="activity-list">
+                <!-- This will be populated by JavaScript from MongoDB -->
+                <div class="activity-item">
+                    <div class="activity-icon">
+                        <i class="fas fa-book"></i>
+                    </div>
+                    <div class="activity-details">
+                        <p><strong>Jane Doe</strong> checked out <strong>The Great Gatsby</strong></p>
+                        <small>2 hours ago</small>
+                    </div>
+                </div>
+                <div class="activity-item">
+                    <div class="activity-icon">
+                        <i class="fas fa-book-open"></i>
+                    </div>
+                    <div class="activity-details">
+                        <p><strong>John Smith</strong> returned <strong>To Kill a Mockingbird</strong></p>
+                        <small>5 hours ago</small>
+                    </div>
+                </div>
+                <div class="activity-item">
+                    <div class="activity-icon">
+                        <i class="fas fa-user-plus"></i>
+                    </div>
+                    <div class="activity-details">
+                        <p>New member <strong>Sarah Johnson</strong> registered</p>
+                        <small>Yesterday</small>
+                    </div>
+                </div>
+                <div class="activity-item">
+                    <div class="activity-icon">
+                        <i class="fas fa-book-medical"></i>
+                    </div>
+                    <div class="activity-details">
+                        <p>New book <strong>Dune</strong> added to collection</p>
+                        <small>2 days ago</small>
+                    </div>
+                </div>
+            </div>
+            <a href="transactions/history.html" class="btn outline">View All Activity</a>
+        </div>
+    </section>
+
+    <!-- Login Modal -->
+    <div class="modal" id="login-modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Login to LibraTech</h2>
+            <form id="login-form">
+                <div class="form-group">
+                    <label for="username">Username</label>
+                    <input type="text" id="username" placeholder="Enter your username" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" placeholder="Enter your password" required>
+                </div>
+                <button type="submit" class="btn primary">Login</button>
+                <p class="form-footer">Don't have an account? <a href="#">Contact admin</a></p>
+            </form>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h3>LibraTech</h3>
+                    <p>Modern library management solution for schools, universities, and public libraries.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="books/browse-books.html">Book Catalog</a></li>
+                        <li><a href="members/manage-members.html">Member Directory</a></li>
+                        <li><a href="transactions/checkout.html">Checkout Books</a></li>
+                        <li><a href="reports/overdue.html">Overdue Reports</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Support</h3>
+                    <ul>
+                        <li><a href="#">Documentation</a></li>
+                        <li><a href="#">API Reference</a></li>
+                        <li><a href="#">Help Center</a></li>
+                        <li><a href="#">Contact Us</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Newsletter</h3>
+                    <p>Subscribe to get updates on new features.</p>
+                    <form id="newsletter-form">
+                        <input type="email" placeholder="Your email address" required>
+                        <button type="submit" class="btn primary">Subscribe</button>
+                    </form>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 LibraTech. All rights reserved.</p>
+                <div class="footer-links">
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="scripts.js"></script>
+</body>
+</html>

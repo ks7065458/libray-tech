@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard | LibraTech</title>
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="admin.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <a href="../index.html" class="logo">Libra<span>Tech</span></a>
+            <div class="nav-links">
+                <a href="../index.html"><i class="fas fa-home"></i> Home</a>
+                <a href="dashboard.html" class="active"><i class="fas fa-tachometer-alt"></i> Dashboard</a>
+                <a href="users.html"><i class="fas fa-users-cog"></i> Users</a>
+                <a href="settings.html"><i class="fas fa-cogs"></i> Settings</a>
+                <a href="#" id="logout-btn"><i class="fas fa-sign-out-alt"></i> Logout</a>
+            </div>
+            <div class="hamburger">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Dashboard Header -->
+    <section class="dashboard-header">
+        <div class="container">
+            <h1><i class="fas fa-tachometer-alt"></i> Admin Dashboard</h1>
+            <div class="quick-actions">
+                <a href="../books/add-book.html" class="btn primary"><i class="fas fa-plus"></i> Add Book</a>
+                <a href="users.html" class="btn secondary"><i class="fas fa-user-plus"></i> Add User</a>
+                <a href="../reports/overdue.html" class="btn warning"><i class="fas fa-exclamation-circle"></i> View Overdues</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Dashboard Widgets -->
+    <div class="container">
+        <div class="stats-grid">
+            <div class="stat-card primary">
+                <i class="fas fa-book"></i>
+                <div class="stat-content">
+                    <h3>Total Books</h3>
+                    <p id="total-books">12,458</p>
+                </div>
+            </div>
+            <div class="stat-card success">
+                <i class="fas fa-users"></i>
+                <div class="stat-content">
+                    <h3>Active Members</h3>
+                    <p id="active-members">2,341</p>
+                </div>
+            </div>
+            <div class="stat-card warning">
+                <i class="fas fa-exchange-alt"></i>
+                <div class="stat-content">
+                    <h3>Current Checkouts</h3>
+                    <p id="current-checkouts">458</p>
+                </div>
+            </div>
+            <div class="stat-card danger">
+                <i class="fas fa-clock"></i>
+                <div class="stat-content">
+                    <h3>Pending Returns</h3>
+                    <p id="pending-returns">127</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Charts Section -->
+        <div class="charts-grid">
+            <div class="chart-card">
+                <h3>Weekly Checkouts</h3>
+                <canvas id="checkoutsChart"></canvas>
+            </div>
+            <div class="chart-card">
+                <h3>Popular Genres</h3>
+                <canvas id="genresChart"></canvas>
+            </div>
+        </div>
+
+        <!-- Recent Activity -->
+        <div class="activity-card">
+            <h3><i class="fas fa-history"></i> Recent Activity</h3>
+            <div class="activity-list">
+                <!-- Activity items from server -->
+                <div class="activity-item">
+                    <i class="fas fa-book"></i>
+                    <div class="activity-content">
+                        <p>New book "Dune" added by Admin</p>
+                        <small>2 hours ago</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="../scripts.js"></script>
+    <script>
+        // Sample charts
+        const ctx1 = document.getElementById('checkoutsChart').getContext('2d');
+        new Chart(ctx1, {
+            type: 'line',
+            data: {
+                labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+                datasets: [{
+                    label: 'Checkouts',
+                    data: [12, 19, 3, 5, 2, 3, 15],
+                    borderColor: '#4361ee',
+                    tension: 0.4
+                }]
+            }
+        });
+
+        const ctx2 = document.getElementById('genresChart').getContext('2d');
+        new Chart(ctx2, {
+            type: 'doughnut',
+            data: {
+                labels: ['Fiction', 'Non-Fiction', 'Science', 'History', 'Technology'],
+                datasets: [{
+                    label: 'Genres',
+                    data: [12, 19, 3, 5, 2],
+                    backgroundColor: ['#4361ee', '#3f37c9', '#4895ef', '#4cc9f0', '#f72585']
+                }]
+            }
+        });
+    </script>
+</body>
+</html>

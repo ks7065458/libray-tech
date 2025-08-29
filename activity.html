@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>System Activity | LibraTech</title>
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="../activity.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <a href="../index.html" class="logo">Libra<span>Tech</span></a>
+            <div class="nav-links">
+                <a href="../index.html"><i class="fas fa-home"></i> Home</a>
+                <a href="../books/browse-books.html"><i class="fas fa-book"></i> Books</a>
+                <a href="../members/manage-members.html"><i class="fas fa-users"></i> Members</a>
+                <a href="../transactions/checkout.html"><i class="fas fa-exchange-alt"></i> Transactions</a>
+                <a href="../reports/overdue.html"><i class="fas fa-chart-bar"></i> Reports</a>
+                <a href="../admin/dashboard.html"><i class="fas fa-cog"></i> Admin</a>
+                <a href="#" id="login-btn"><i class="fas fa-sign-in-alt"></i> Login</a>
+            </div>
+            <div class="hamburger">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Activity Header -->
+    <section class="activity-header">
+        <div class="container">
+            <div>
+                <h1>System Activity Log</h1>
+                <p>Monitor all library system activities and user actions</p>
+            </div>
+            <div class="header-actions">
+                <a href="#" class="btn secondary" id="refresh-activity"><i class="fas fa-sync-alt"></i> Refresh</a>
+                <a href="#" class="btn primary" id="export-logs"><i class="fas fa-download"></i> Export Logs</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Activity Filters -->
+    <div class="container">
+        <div class="activity-tools">
+            <div class="search-filter">
+                <input type="text" id="search-activity" placeholder="Search activities...">
+                <div class="filter-group">
+                    <select id="filter-type">
+                        <option value="">All Activities</option>
+                        <option value="checkout">Checkouts</option>
+                        <option value="return">Returns</option>
+                        <option value="member">Member Actions</option>
+                        <option value="system">System Events</option>
+                        <option value="book">Book Updates</option>
+                    </select>
+                    <input type="date" id="filter-date">
+                    <select id="filter-user">
+                        <option value="">All Users</option>
+                        <option value="admin">Admin</option>
+                        <option value="staff">Staff</option>
+                        <option value="member">Members</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <!-- Activity Timeline -->
+        <div class="activity-timeline">
+            <div class="timeline-items" id="activity-list">
+                <!-- Dynamically populated from MongoDB -->
+                <div class="empty-state">
+                    <i class="fas fa-inbox"></i>
+                    <p>No activities found</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Pagination -->
+        <div class="pagination">
+            <button class="btn outline" id="prev-page"><i class="fas fa-chevron-left"></i></button>
+            <span id="page-info">Page 1 of 1</span>
+            <button class="btn outline" id="next-page"><i class="fas fa-chevron-right"></i></button>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <!-- Same footer as previous pages -->
+        </div>
+    </footer>
+
+    <!-- Activity Detail Modal -->
+    <div class="modal" id="detail-modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Activity Details</h2>
+            <div class="activity-details" id="activity-details"></div>
+        </div>
+    </div>
+
+    <script src="../scripts.js"></script>
+    <script>
+        // Mock data - Replace with MongoDB queries
+        const mockActivities = [
+            {
+                id: "ACT2023001",
+                timestamp: "2023-09-20T14:30:00Z",
+                type: "checkout",
+                user: { name: "Sarah Johnson", type: "member" },
+                target: "The Great Gatsby (BK2023001)",
+                details: "Checked out 2 items",
+                ipAddress: "192.168.1.100"
+            },
+            {
+                id: "ACT2023002",
+                timestamp: "2023-09-20T10:15:00Z",
+                type: "system",
+                user: { name: "Admin", type: "admin" },
+                target: "System Settings",
+                details: "Updated library opening hours",
+                ipAddress: "10.0.0.1"
+            }
+        ];
+
+        let currentPage = 1;
+        const itemsPerPage = 15;
+
+        document.addEventListener('DOMContentLoaded', () => {
+            loadActivities();
+            setupEventListeners();
+        });
+
+        function loadActivities() {
+            // Simulate MongoDB fetch
+            // fetch(`/api/activities?page=${currentPage}`)
+            //     .then(response => response.json())
+            //     .then(data => renderActivities(data));
+            
+            renderActivities(mockActivities);
+        }
+
+        function renderActivities(activities) {
+            const container = document.getElementById('activity-list');
+            container.innerHTML = '';
+
+            if(activities.length === 0) {
+                container.innerHTML = '<div class="empty-state"><i class="fas fa-inbox"></i><p>No activities found</p></div>';
+                return;
+            }
+
+            activities.forEach(activity => {
+                const activityItem = document.createElement('div');
+                activityItem.className = `timeline-item ${activity.type}`;
+                activityItem.innerHTML = `
+                    <div class="activity-icon">
+                        ${getActivityIcon(activity.type)}
+                    </div>
+                    <div class="activity-content">
+                        <div class="activity-header">
+                            <h4>${activity.user.name}</h4>
+                            <span class="activity-time">${new Date(activity.timestamp).toLocaleString()}</span>
+                        </div>
+                        <div class="activity-body">
+                            <p class="activity-type">${formatActivityType(activity.type)}</p>
+                            <p>${activity.details}</p>
+                            <small class="activity-meta">Target: ${activity.target} • IP: ${activity.ipAddress}</small>
+                        </div>
+                        <button class="btn link" onclick="showDetails('${activity.id}')">View Details</button>
+                    </div>
+                `;
+                container.appendChild(activityItem);
+            });
+        }
+
+        function getActivityIcon(type) {
+            const icons = {
+                checkout: '<i class="fas fa-book"></i>',
+                return: '<i class="fas fa-undo"></i>',
+                member: '<i class="fas fa-user"></i>',
+                system: '<i class="fas fa-cog"></i>',
+                book: '<i class="fas fa-book-medical"></i>'
+            };
+            return icons[type] || '<i class="fas fa-info-circle"></i>';
+        }
+
+        function formatActivityType(type) {
+            const types = {
+                checkout: 'Book Checkout',
+                return: 'Book Return',
+                member: 'Member Action',
+                system: 'System Update',
+                book: 'Book Management'
+            };
+            return types[type] || type;
+        }
+
+        function setupEventListeners() {
+            // Search and filter
+            document.getElementById('search-activity').addEventListener('input', filterActivities);
+            document.getElementById('filter-type').addEventListener('change', filterActivities);
+            document.getElementById('filter-date').addEventListener('change', filterActivities);
+            document.getElementById('filter-user').addEventListener('change', filterActivities);
+
+            // Export logs
+            document.getElementById('export-logs').addEventListener('click', exportLogs);
+        }
+
+        function filterActivities() {
+            const searchTerm = document.getElementById('search-activity').value.toLowerCase();
+            const typeFilter = document.getElementById('filter-type').value;
+            const dateFilter = document.getElementById('filter-date').value;
+            const userFilter = document.getElementById('filter-user').value;
+
+            const filtered = mockActivities.filter(activity => {
+                const matchesSearch = activity.user.name.toLowerCase().includes(searchTerm) ||
+                    activity.details.toLowerCase().includes(searchTerm) ||
+                    activity.target.toLowerCase().includes(searchTerm);
+
+                const matchesType = !typeFilter || activity.type === typeFilter;
+                const matchesDate = !dateFilter || 
+                    new Date(activity.timestamp).toISOString().split('T')[0] === dateFilter;
+                const matchesUser = !userFilter || activity.user.type === userFilter;
+
+                return matchesSearch && matchesType && matchesDate && matchesUser;
+            });
+
+            renderActivities(filtered);
+        }
+
+        function showDetails(activityId) {
+            const activity = mockActivities.find(a => a.id === activityId);
+            const details = `
+                <div class="detail-item">
+                    <label>Activity ID:</label>
+                    <p>${activity.id}</p>
+                </div>
+                <div class="detail-item">
+                    <label>Timestamp:</label>
+                    <p>${new Date(activity.timestamp).toLocaleString()}</p>
+                </div>
+                <div class="detail-item">
+                    <label>User Type:</label>
+                    <p>${activity.user.type}</p>
+                </div>
+                <div class="detail-item">
+                    <label>IP Address:</label>
+                    <p>${activity.ipAddress}</p>
+                </div>
+                <div class="detail-item">
+                    <label>Full Details:</label>
+                    <pre>${JSON.stringify(activity, null, 2)}</pre>
+                </div>
+            `;
+
+            document.getElementById('activity-details').innerHTML = details;
+            document.getElementById('detail-modal').classList.add('show');
+        }
+
+        function exportLogs() {
+            // Implement export functionality
+            alert('Exporting activity logs...');
+        }
+
+        // Close modal
+        document.querySelector('#detail-modal .close').addEventListener('click', () => {
+            document.getElementById('detail-modal').classList.remove('show');
+        });
+    </script>
+</body>
+</html>

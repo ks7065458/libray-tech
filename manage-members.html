@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Members | LibraTech</title>
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="../member.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <a href="../index.html" class="logo">Libra<span>Tech</span></a>
+            <div class="nav-links">
+                <a href="../index.html"><i class="fas fa-home"></i> Home</a>
+                <a href="../books/browse-books.html"><i class="fas fa-book"></i> Books</a>
+                <a href="manage-members.html" class="active"><i class="fas fa-users"></i> Members</a>
+                <a href="../transactions/checkout.html"><i class="fas fa-exchange-alt"></i> Transactions</a>
+                <a href="../reports/overdue.html"><i class="fas fa-chart-bar"></i> Reports</a>
+                <a href="../admin/dashboard.html"><i class="fas fa-cog"></i> Admin</a>
+                <a href="#" id="login-btn"><i class="fas fa-sign-in-alt"></i> Login</a>
+            </div>
+            <div class="hamburger">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Member Header -->
+    <section class="member-header">
+        <div class="container">
+            <div>
+                <h1>Member Management</h1>
+                <p>View and manage all library members in the system</p>
+            </div>
+            <div class="member-actions">
+                <a href="add-member.html" class="btn primary"><i class="fas fa-user-plus"></i> Add Member</a>
+                <a href="#" class="btn secondary"><i class="fas fa-download"></i> Export</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Member Tools -->
+    <div class="container">
+        <div class="member-tools">
+            <div class="member-search-bar">
+                <input type="text" placeholder="Search members by name, email, or ID...">
+                <button type="submit"><i class="fas fa-search"></i></button>
+            </div>
+            <div class="member-filter-options">
+                <div class="member-filter-group">
+                    <label for="member-status">Status</label>
+                    <select id="member-status">
+                        <option value="">All Statuses</option>
+                        <option value="active">Active</option>
+                        <option value="inactive">Inactive</option>
+                    </select>
+                </div>
+                <div class="member-filter-group">
+                    <label for="member-type">Member Type</label>
+                    <select id="member-type">
+                        <option value="">All Types</option>
+                        <option value="student">Student</option>
+                        <option value="faculty">Faculty</option>
+                        <option value="staff">Staff</option>
+                        <option value="community">Community</option>
+                    </select>
+                </div>
+                <div class="member-filter-group">
+                    <label for="sort-by">Sort By</label>
+                    <select id="sort-by">
+                        <option value="name-asc">Name (A-Z)</option>
+                        <option value="name-desc">Name (Z-A)</option>
+                        <option value="recent">Most Recent</option>
+                        <option value="oldest">Oldest</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <!-- Member Table -->
+        <div class="member-table-container">
+            <table class="member-table">
+                <thead>
+                    <tr>
+                        <th>Member</th>
+                        <th>Contact</th>
+                        <th>Type</th>
+                        <th>Status</th>
+                        <th>Member Since</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>
+                            <div style="display: flex; align-items: center; gap: 15px;">
+                                <div class="member-avatar">
+                                    <i class="fas fa-user"></i>
+                                </div>
+                                <div>
+                                    <div class="member-name">John Smith</div>
+                                    <div class="member-id">ID: MEM20230001</div>
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            john.smith@example.com<br>
+                            (555) 123-4567
+                        </td>
+                        <td>Faculty</td>
+                        <td><span class="member-status active">Active</span></td>
+                        <td>Jan 15, 2022</td>
+                        <td class="member-actions-cell">
+                            <a href="member-profile.html?id=MEM20230001" class="btn outline">View</a>
+                            <a href="#" class="btn secondary">Edit</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div style="display: flex; align-items: center; gap: 15px;">
+                                <div class="member-avatar">
+                                    <i class="fas fa-user"></i>
+                                </div>
+                                <div>
+                                    <div class="member-name">Sarah Johnson</div>
+                                    <div class="member-id">ID: MEM20230002</div>
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            sarah.j@example.com<br>
+                            (555) 987-6543
+                        </td>
+                        <td>Student</td>
+                        <td><span class="member-status active">Active</span></td>
+                        <td>Mar 22, 2023</td>
+                        <td class="member-actions-cell">
+                            <a href="member-profile.html?id=MEM20230002" class="btn outline">View</a>
+                            <a href="#" class="btn secondary">Edit</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div style="display: flex; align-items: center; gap: 15px;">
+                                <div class="member-avatar">
+                                    <i class="fas fa-user"></i>
+                                </div>
+                                <div>
+                                    <div class="member-name">Robert Chen</div>
+                                    <div class="member-id">ID: MEM20220045</div>
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            r.chen@example.com<br>
+                            (555) 456-7890
+                        </td>
+                        <td>Community</td>
+                        <td><span class="member-status inactive">Inactive</span></td>
+                        <td>Aug 5, 2021</td>
+                        <td class="member-actions-cell">
+                            <a href="member-profile.html?id=MEM20220045" class="btn outline">View</a>
+                            <a href="#" class="btn secondary">Edit</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div style="display: flex; align-items: center; gap: 15px;">
+                                <div class="member-avatar">
+                                    <i class="fas fa-user"></i>
+                                </div>
+                                <div>
+                                    <div class="member-name">Emily Wilson</div>
+                                    <div class="member-id">ID: MEM20230015</div>
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            emily.w@example.com<br>
+                            (555) 234-5678
+                        </td>
+                        <td>Staff</td>
+                        <td><span class="member-status active">Active</span></td>
+                        <td>Feb 10, 2023</td>
+                        <td class="member-actions-cell">
+                            <a href="member-profile.html?id=MEM20230015" class="btn outline">View</a>
+                            <a href="#" class="btn secondary">Edit</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div style="display: flex; align-items: center; gap: 15px;">
+                                <div class="member-avatar">
+                                    <i class="fas fa-user"></i>
+                                </div>
+                                <div>
+                                    <div class="member-name">Michael Brown</div>
+                                    <div class="member-id">ID: MEM20220089</div>
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            michael.b@example.com<br>
+                            (555) 345-6789
+                        </td>
+                        <td>Student</td>
+                        <td><span class="member-status active">Active</span></td>
+                        <td>Nov 18, 2022</td>
+                        <td class="member-actions-cell">
+                            <a href="member-profile.html?id=MEM20220089" class="btn outline">View</a>
+                            <a href="#" class="btn secondary">Edit</a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Pagination -->
+        <div class="pagination">
+            <a href="#" class="active">1</a>
+            <a href="#">2</a>
+            <a href="#">3</a>
+            <a href="#">4</a>
+            <a href="#">5</a>
+            <a href="#"><i class="fas fa-chevron-right"></i></a>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h3>LibraTech</h3>
+                    <p>Modern library management solution for schools, universities, and public libraries.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="../books/browse-books.html">Book Catalog</a></li>
+                        <li><a href="manage-members.html">Member Directory</a></li>
+                        <li><a href="../transactions/checkout.html">Checkout Books</a></li>
+                        <li><a href="../reports/overdue.html">Overdue Reports</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Support</h3>
+                    <ul>
+                        <li><a href="#">Documentation</a></li>
+                        <li><a href="#">API Reference</a></li>
+                        <li><a href="#">Help Center</a></li>
+                        <li><a href="#">Contact Us</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Newsletter</h3>
+                    <p>Subscribe to get updates on new features.</p>
+                    <form id="newsletter-form">
+                        <input type="email" placeholder="Your email address" required>
+                        <button type="submit" class="btn primary">Subscribe</button>
+                    </form>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 LibraTech. All rights reserved.</p>
+                <div class="footer-links">
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../scripts.js"></script>
+</body>
+</html>

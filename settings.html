@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>System Settings | LibraTech</title>
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="admin.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <!-- Same navigation as dashboard -->
+         <div class="container">
+        <a href="../index.html" class="logo">Libra<span>Tech</span></a>
+        <div class="nav-links">
+            <a href="../index.html"><i class="fas fa-home"></i> Home</a>
+            <a href="dashboard.html" class="active"><i class="fas fa-tachometer-alt"></i> Dashboard</a>
+            <a href="users.html"><i class="fas fa-users-cog"></i> Users</a>
+            <a href="settings.html"><i class="fas fa-cogs"></i> Settings</a>
+            <a href="#" id="logout-btn"><i class="fas fa-sign-out-alt"></i> Logout</a>
+        </div>
+        <div class="hamburger">
+            <i class="fas fa-bars"></i>
+        </div>
+    </div>
+    </nav>
+
+    <!-- Settings Header -->
+    <section class="settings-header">
+        <div class="container">
+            <h1><i class="fas fa-cogs"></i> System Settings</h1>
+            <div class="settings-actions">
+                <button class="btn primary" id="save-settings"><i class="fas fa-save"></i> Save Changes</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Settings Sections -->
+    <div class="container">
+        <div class="settings-grid">
+            <!-- Library Settings -->
+            <div class="settings-card">
+                <h3><i class="fas fa-book"></i> Library Policies</h3>
+                <div class="form-group">
+                    <label>Loan Period (days)</label>
+                    <input type="number" value="14">
+                </div>
+                <div class="form-group">
+                    <label>Max Checkouts</label>
+                    <input type="number" value="10">
+                </div>
+                <div class="form-group">
+                    <label>Daily Fine Rate ($)</label>
+                    <input type="number" step="0.01" value="0.25">
+                </div>
+            </div>
+
+            <!-- System Settings -->
+            <div class="settings-card">
+                <h3><i class="fas fa-server"></i> System Configuration</h3>
+                <div class="form-group">
+                    <label>Time Zone</label>
+                    <select>
+                        <option>UTC</option>
+                        <option selected>Local</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Date Format</label>
+                    <select>
+                        <option>YYYY-MM-DD</option>
+                        <option selected>MM/DD/YYYY</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Notifications -->
+            <div class="settings-card">
+                <h3><i class="fas fa-bell"></i> Notifications</h3>
+                <div class="form-group">
+                    <label>Due Date Reminder</label>
+                    <input type="number" value="3"> days before
+                </div>
+                <div class="form-group">
+                    <label>Overdue Alerts</label>
+                    <select>
+                        <option>Daily</option>
+                        <option selected>Weekly</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Backup/Restore -->
+            <div class="settings-card danger">
+                <h3><i class="fas fa-database"></i> Backup & Restore</h3>
+                <div class="form-group">
+                    <button class="btn secondary"><i class="fas fa-download"></i> Backup Now</button>
+                </div>
+                <div class="form-group">
+                    <input type="file" accept=".backup">
+                    <button class="btn warning"><i class="fas fa-upload"></i> Restore</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="../scripts.js"></script>
+</body>
+</html>

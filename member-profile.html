@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Member Profile | LibraTech</title>
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="../member.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <a href="../index.html" class="logo">Libra<span>Tech</span></a>
+            <div class="nav-links">
+                <a href="../index.html"><i class="fas fa-home"></i> Home</a>
+                <a href="../books/browse-books.html"><i class="fas fa-book"></i> Books</a>
+                <a href="manage-members.html" class="active"><i class="fas fa-users"></i> Members</a>
+                <a href="../transactions/checkout.html"><i class="fas fa-exchange-alt"></i> Transactions</a>
+                <a href="../reports/overdue.html"><i class="fas fa-chart-bar"></i> Reports</a>
+                <a href="../admin/dashboard.html"><i class="fas fa-cog"></i> Admin</a>
+                <a href="#" id="login-btn"><i class="fas fa-sign-in-alt"></i> Login</a>
+            </div>
+            <div class="hamburger">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Member Header -->
+    <section class="member-header">
+        <div class="container">
+            <div>
+                <h1>Member Profile</h1>
+                <p>View and manage member details, checkouts, and history</p>
+            </div>
+            <div class="member-actions">
+                <a href="manage-members.html" class="btn secondary"><i class="fas fa-arrow-left"></i> Back to Members</a>
+                <a href="#" class="btn primary"><i class="fas fa-print"></i> Print Card</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Member Profile Content -->
+    <div class="container">
+        <div class="member-profile-page">
+            <!-- Left Side - Profile Card -->
+            <div class="member-profile-card">
+                <div class="member-profile-avatar">
+                    <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Sarah Johnson">
+                </div>
+                <h2 class="member-profile-name">Sarah Johnson</h2>
+                <p class="member-profile-id">Member ID: MEM20230003</p>
+                
+                <div class="member-profile-meta">
+                    <div class="member-profile-meta-item">
+                        <h4>Member Type</h4>
+                        <p>Public</p>
+                    </div>
+                    <div class="member-profile-meta-item">
+                        <h4>Status</h4>
+                        <p><span class="member-status active">Active</span></p>
+                    </div>
+                    <div class="member-profile-meta-item">
+                        <h4>Member Since</h4>
+                        <p>March 10, 2023</p>
+                    </div>
+                </div>
+                
+                <div class="member-profile-actions">
+                    <a href="#" class="btn primary"><i class="fas fa-edit"></i> Edit Profile</a>
+                    <a href="../transactions/checkout.html?member=MEM20230003" class="btn secondary"><i class="fas fa-book"></i> New Checkout</a>
+                    <a href="#" class="btn outline"><i class="fas fa-envelope"></i> Send Message</a>
+                </div>
+            </div>
+            
+            <!-- Right Side - Details Sections -->
+            <div class="member-details">
+                <!-- Personal Information Section -->
+                <div class="member-details-section">
+                    <h3><i class="fas fa-user-circle"></i> Personal Information</h3>
+                    <div class="member-details-grid">
+                        <div class="member-detail-item">
+                            <h4>Email Address</h4>
+                            <p>sjohnson@example.com</p>
+                        </div>
+                        <div class="member-detail-item">
+                            <h4>Phone Number</h4>
+                            <p>(555) 456-7890</p>
+                        </div>
+                        <div class="member-detail-item">
+                            <h4>Date of Birth</h4>
+                            <p>April 15, 1985</p>
+                        </div>
+                        <div class="member-detail-item">
+                            <h4>Gender</h4>
+                            <p>Female</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Address Information Section -->
+                <div class="member-details-section">
+                    <h3><i class="fas fa-home"></i> Address Information</h3>
+                    <div class="member-details-grid">
+                        <div class="member-detail-item">
+                            <h4>Street Address</h4>
+                            <p>123 Library Lane</p>
+                        </div>
+                        <div class="member-detail-item">
+                            <h4>City</h4>
+                            <p>Bookville</p>
+                        </div>
+                        <div class="member-detail-item">
+                            <h4>State/Province</h4>
+                            <p>CA</p>
+                        </div>
+                        <div class="member-detail-item">
+                            <h4>ZIP/Postal Code</h4>
+                            <p>90210</p>
+                        </div>
+                        <div class="member-detail-item">
+                            <h4>Country</h4>
+                            <p>United States</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Membership Details Section -->
+                <div class="member-details-section">
+                    <h3><i class="fas fa-id-card"></i> Membership Details</h3>
+                    <div class="member-details-grid">
+                        <div class="member-detail-item">
+                            <h4>Barcode</h4>
+                            <p>9876543210</p>
+                        </div>
+                        <div class="member-detail-item">
+                            <h4>Expiration Date</h4>
+                            <p>March 10, 2024</p>
+                        </div>
+                        <div class="member-detail-item">
+                            <h4>Max Checkouts</h4>
+                            <p>10 items</p>
+                        </div>
+                        <div class="member-detail-item">
+                            <h4>Fines Owed</h4>
+                            <p>$0.00</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Checkout History Section -->
+        <div class="member-checkout-history">
+            <h3><i class="fas fa-history"></i> Checkout History</h3>
+            <div class="member-table-container">
+                <table class="member-table">
+                    <thead>
+                        <tr>
+                            <th>Book Title</th>
+                            <th>Author</th>
+                            <th>Checkout Date</th>
+                            <th>Due Date</th>
+                            <th>Return Date</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>The Great Gatsby</td>
+                            <td>F. Scott Fitzgerald</td>
+                            <td>Jun 15, 2023</td>
+                            <td>Jun 30, 2023</td>
+                            <td>Jun 28, 2023</td>
+                            <td><span class="member-status active">Returned</span></td>
+                        </tr>
+                        <tr>
+                            <td>To Kill a Mockingbird</td>
+                            <td>Harper Lee</td>
+                            <td>Jul 5, 2023</td>
+                            <td>Jul 20, 2023</td>
+                            <td>Jul 18, 2023</td>
+                            <td><span class="member-status active">Returned</span></td>
+                        </tr>
+                        <tr>
+                            <td>1984</td>
+                            <td>George Orwell</td>
+                            <td>Aug 10, 2023</td>
+                            <td>Aug 25, 2023</td>
+                            <td>Aug 24, 2023</td>
+                            <td><span class="member-status active">Returned</span></td>
+                        </tr>
+                        <tr>
+                            <td>Pride and Prejudice</td>
+                            <td>Jane Austen</td>
+                            <td>Sep 1, 2023</td>
+                            <td>Sep 16, 2023</td>
+                            <td>-</td>
+                            <td><span class="member-status overdue">Overdue</span></td>
+                        </tr>
+                        <tr>
+                            <td>The Hobbit</td>
+                            <td>J.R.R. Tolkien</td>
+                            <td>Sep 5, 2023</td>
+                            <td>Sep 20, 2023</td>
+                            <td>-</td>
+                            <td><span class="member-status active">Checked Out</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            <div class="pagination">
+                <a href="#" class="active">1</a>
+                <a href="#">2</a>
+                <a href="#"><i class="fas fa-chevron-right"></i></a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h3>LibraTech</h3>
+                    <p>Modern library management solution for schools, universities, and public libraries.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="../books/browse-books.html">Book Catalog</a></li>
+                        <li><a href="manage-members.html">Member Directory</a></li>
+                        <li><a href="../transactions/checkout.html">Checkout Books</a></li>
+                        <li><a href="../reports/overdue.html">Overdue Reports</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Support</h3>
+                    <ul>
+                        <li><a href="#">Documentation</a></li>
+                        <li><a href="#">API Reference</a></li>
+                        <li><a href="#">Help Center</a></li>
+                        <li><a href="#">Contact Us</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Newsletter</h3>
+                    <p>Subscribe to get updates on new features.</p>
+                    <form id="newsletter-form">
+                        <input type="email" placeholder="Your email address" required>
+                        <button type="submit" class="btn primary">Subscribe</button>
+                    </form>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 LibraTech. All rights reserved.</p>
+                <div class="footer-links">
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../scripts.js"></script>
+    <script>
+        // In a real app, you would fetch member data from MongoDB based on the ID in the URL
+        document.addEventListener('DOMContentLoaded', function() {
+            // Get member ID from URL
+            const urlParams = new URLSearchParams(window.location.search);
+            const memberId = urlParams.get('id');
+            
+            // This would be replaced with an actual API call in a real application
+            // fetch(`/api/members/${memberId}`)
+            //     .then(response => response.json())
+            //     .then(data => populateMemberData(data));
+            
+            // For demo purposes, we'll just log the member ID
+            console.log('Loading profile for member ID:', memberId);
+            
+            // Example of how you might handle checkout history filtering
+            const filterCheckoutHistory = (status) => {
+                const rows = document.querySelectorAll('.member-checkout-history tbody tr');
+                rows.forEach(row => {
+                    const rowStatus = row.cells[5].textContent.toLowerCase();
+                    if (!status || rowStatus.includes(status.toLowerCase())) {
+                        row.style.display = '';
+                    } else {
+                        row.style.display = 'none';
+                    }
+                });
+            };
+            
+            // You could add buttons to filter the checkout history
+            // document.getElementById('filter-all').addEventListener('click', () => filterCheckoutHistory(''));
+            // document.getElementById('filter-current').addEventListener('click', () => filterCheckoutHistory('checked out'));
+            // document.getElementById('filter-overdue').addEventListener('click', () => filterCheckoutHistory('overdue'));
+            // document.getElementById('filter-returned').addEventListener('click', () => filterCheckoutHistory('returned'));
+        });
+    </script>
+</body>
+</html>

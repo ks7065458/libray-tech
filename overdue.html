@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Overdue Reports | LibraTech</title>
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="../reports.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <a href="../index.html" class="logo">Libra<span>Tech</span></a>
+            <div class="nav-links">
+                <a href="../index.html"><i class="fas fa-home"></i> Home</a>
+                <a href="../books/browse-books.html"><i class="fas fa-book"></i> Books</a>
+                <a href="../members/manage-members.html"><i class="fas fa-users"></i> Members</a>
+                <a href="../transactions/checkout.html"><i class="fas fa-exchange-alt"></i> Transactions</a>
+                <a href="overdue.html" class="active"><i class="fas fa-chart-bar"></i> Reports</a>
+                <a href="../admin/dashboard.html"><i class="fas fa-cog"></i> Admin</a>
+                <a href="#" id="login-btn"><i class="fas fa-sign-in-alt"></i> Login</a>
+            </div>
+            <div class="hamburger">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Overdue Header -->
+    <section class="overdue-header">
+        <div class="container">
+            <div>
+                <h1>Overdue Items Report</h1>
+                <p>Manage and track overdue library materials</p>
+            </div>
+            <div class="header-actions">
+                <a href="#" class="btn secondary" id="refresh-btn"><i class="fas fa-sync-alt"></i> Refresh</a>
+                <a href="#" class="btn primary" id="export-btn"><i class="fas fa-file-export"></i> Export</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Summary Cards -->
+    <div class="container">
+        <div class="summary-grid">
+            <div class="summary-card danger">
+                <div class="summary-icon">
+                    <i class="fas fa-exclamation-triangle"></i>
+                </div>
+                <div class="summary-content">
+                    <h3 id="total-overdue">0</h3>
+                    <p>Total Overdue Items</p>
+                </div>
+            </div>
+            <div class="summary-card warning">
+                <div class="summary-icon">
+                    <i class="fas fa-coins"></i>
+                </div>
+                <div class="summary-content">
+                    <h3 id="total-fines">$0.00</h3>
+                    <p>Outstanding Fines</p>
+                </div>
+            </div>
+            <div class="summary-card info">
+                <div class="summary-icon">
+                    <i class="fas fa-calendar-times"></i>
+                </div>
+                <div class="summary-content">
+                    <h3 id="avg-days">0</h3>
+                    <p>Average Days Overdue</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Overdue Items Table -->
+    <div class="container">
+        <div class="report-tools">
+            <div class="search-filter">
+                <input type="text" id="search-overdue" placeholder="Search overdue items...">
+                <div class="filter-group">
+                    <select id="filter-category">
+                        <option value="">All Categories</option>
+                        <option value="book">Books</option>
+                        <option value="media">Media</option>
+                        <option value="equipment">Equipment</option>
+                    </select>
+                    <select id="filter-status">
+                        <option value="">All Statuses</option>
+                        <option value="unpaid">Unpaid Fines</option>
+                        <option value="partial">Partial Payment</option>
+                        <option value="reported">Reported Lost</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <div class="overdue-table-container">
+            <table class="overdue-table">
+                <thead>
+                    <tr>
+                        <th data-sort="title">Item Title <i class="fas fa-sort"></i></th>
+                        <th data-sort="member">Member <i class="fas fa-sort"></i></th>
+                        <th data-sort="dueDate">Due Date <i class="fas fa-sort"></i></th>
+                        <th data-sort="daysOverdue">Days Overdue <i class="fas fa-sort"></i></th>
+                        <th data-sort="fine">Fine <i class="fas fa-sort"></i></th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="overdue-items">
+                    <!-- Dynamically populated from MongoDB -->
+                    <tr class="empty-row">
+                        <td colspan="6">
+                            <div class="empty-state">
+                                <i class="fas fa-check-circle"></i>
+                                <p>No overdue items found</p>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Pagination -->
+        <div class="pagination">
+            <button class="btn outline" id="prev-page"><i class="fas fa-chevron-left"></i></button>
+            <span id="page-info">Page 1 of 1</span>
+            <button class="btn outline" id="next-page"><i class="fas fa-chevron-right"></i></button>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h3>LibraTech</h3>
+                    <p>Modern library management solution for schools, universities, and public libraries.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="../books/browse-books.html">Book Catalog</a></li>
+                        <li><a href="../members/manage-members.html">Member Directory</a></li>
+                        <li><a href="../transactions/checkout.html">Checkout Books</a></li>
+                        <li><a href="overdue.html">Overdue Reports</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Support</h3>
+                    <ul>
+                        <li><a href="#">Documentation</a></li>
+                        <li><a href="#">API Reference</a></li>
+                        <li><a href="#">Help Center</a></li>
+                        <li><a href="#">Contact Us</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Newsletter</h3>
+                    <p>Subscribe to get updates on new features.</p>
+                    <form id="newsletter-form">
+                        <input type="email" placeholder="Your email address" required>
+                        <button type="submit" class="btn primary">Subscribe</button>
+                    </form>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 LibraTech. All rights reserved.</p>
+                <div class="footer-links">
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Reminder Modal -->
+    <div class="modal" id="reminder-modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2><i class="fas fa-envelope"></i> Send Reminder</h2>
+            <div class="reminder-form">
+                <div class="form-group">
+                    <label>Recipient</label>
+                    <p id="reminder-recipient">loading...</p>
+                </div>
+                <div class="form-group">
+                    <label for="reminder-method">Delivery Method</label>
+                    <select id="reminder-method">
+                        <option value="email">Email</option>
+                        <option value="sms">SMS</option>
+                        <option value="both">Both</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="reminder-message">Custom Message</label>
+                    <textarea id="reminder-message" rows="4" placeholder="Add custom message..."></textarea>
+                </div>
+                <button class="btn primary" id="send-reminder"><i class="fas fa-paper-plane"></i> Send Reminder</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="../scripts.js"></script>
+    <script>
+        // Mock data - Replace with MongoDB queries
+        const mockOverdueItems = [
+            {
+                id: "OD2023001",
+                item: {
+                    title: "The Great Gatsby",
+                    type: "book",
+                    barcode: "BK2023001"
+                },
+                member: {
+                    id: "MEM2023001",
+                    name: "John Doe",
+                    email: "john@example.com",
+                    phone: "(555) 123-4567"
+                },
+                dueDate: "2023-09-15",
+                daysOverdue: 8,
+                fine: 4.00,
+                status: "unpaid"
+            },
+            {
+                id: "OD2023002",
+                item: {
+                    title: "DSLR Camera Kit",
+                    type: "equipment",
+                    barcode: "EQ2023005"
+                },
+                member: {
+                    id: "MEM2023003",
+                    name: "Sarah Johnson",
+                    email: "sarah@example.com",
+                    phone: "(555) 987-6543"
+                },
+                dueDate: "2023-09-10",
+                daysOverdue: 13,
+                fine: 13.00,
+                status: "partial"
+            }
+        ];
+
+        let currentPage = 1;
+        const itemsPerPage = 10;
+
+        document.addEventListener('DOMContentLoaded', () => {
+            loadOverdueItems();
+            setupEventListeners();
+        });
+
+        function loadOverdueItems() {
+            // Simulate MongoDB fetch
+            // fetch(`/api/overdue?page=${currentPage}`)
+            //     .then(response => response.json())
+            //     .then(data => renderItems(data));
+            
+            renderItems(mockOverdueItems);
+            updateSummary(mockOverdueItems);
+        }
+
+        function renderItems(items) {
+            const tbody = document.getElementById('overdue-items');
+            tbody.innerHTML = '';
+
+            if(items.length === 0) {
+                document.querySelector('.empty-row').style.display = '';
+                return;
+            }
+
+            document.querySelector('.empty-row').style.display = 'none';
+
+            items.forEach(item => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>
+                        <div class="item-info">
+                            <i class="fas fa-${getItemIcon(item.item.type)}"></i>
+                            <div>
+                                <h4>${item.item.title}</h4>
+                                <small>${item.item.barcode}</small>
+                            </div>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="member-info">
+                            <div class="member-avatar-small">
+                                ${item.member.name.charAt(0)}
+                            </div>
+                            ${item.member.name}<br>
+                            <small>${item.member.id}</small>
+                        </div>
+                    </td>
+                    <td>${new Date(item.dueDate).toLocaleDateString()}</td>
+                    <td>
+                        <span class="badge danger">${item.daysOverdue} days</span>
+                    </td>
+                    <td>
+                        $${item.fine.toFixed(2)}
+                        <small class="status ${item.status}">${item.status}</small>
+                    </td>
+                    <td>
+                        <div class="action-buttons">
+                            <button class="btn outline" onclick="showReminderModal('${item.id}')">
+                                <i class="fas fa-envelope"></i>
+                            </button>
+                            <button class="btn outline" onclick="showPaymentModal('${item.id}')">
+                                <i class="fas fa-dollar-sign"></i>
+                            </button>
+                            <button class="btn outline" onclick="showDetails('${item.id}')">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                        </div>
+                    </td>
+                `;
+                tbody.appendChild(row);
+            });
+        }
+
+        function updateSummary(items) {
+            // Calculate summary statistics
+            const totalOverdue = items.length;
+            const totalFines = items.reduce((sum, item) => sum + item.fine, 0);
+            const avgDays = items.length > 0 ? 
+                Math.round(items.reduce((sum, item) => sum + item.daysOverdue, 0) / items.length) : 0;
+
+            document.getElementById('total-overdue').textContent = totalOverdue;
+            document.getElementById('total-fines').textContent = `$${totalFines.toFixed(2)}`;
+            document.getElementById('avg-days').textContent = avgDays;
+        }
+
+        function getItemIcon(type) {
+            const icons = {
+                book: 'book',
+                media: 'compact-disc',
+                equipment: 'camera'
+            };
+            return icons[type] || 'box';
+        }
+
+        function setupEventListeners() {
+            // Search
+            document.getElementById('search-overdue').addEventListener('input', filterItems);
+            
+            // Filters
+            document.getElementById('filter-category').addEventListener('change', filterItems);
+            document.getElementById('filter-status').addEventListener('change', filterItems);
+
+            // Sorting
+            document.querySelectorAll('[data-sort]').forEach(header => {
+                header.addEventListener('click', () => sortItems(header.dataset.sort));
+            });
+
+            // Pagination
+            document.getElementById('prev-page').addEventListener('click', () => {
+                if(currentPage > 1) currentPage--;
+                loadOverdueItems();
+            });
+
+            document.getElementById('next-page').addEventListener('click', () => {
+                currentPage++;
+                loadOverdueItems();
+            });
+
+            // Export
+            document.getElementById('export-btn').addEventListener('click', exportReport);
+        }
+
+        function filterItems() {
+            const searchTerm = document.getElementById('search-overdue').value.toLowerCase();
+            const categoryFilter = document.getElementById('filter-category').value;
+            const statusFilter = document.getElementById('filter-status').value;
+
+            const filtered = mockOverdueItems.filter(item => {
+                const matchesSearch = item.item.title.toLowerCase().includes(searchTerm) ||
+                    item.item.barcode.includes(searchTerm) ||
+                    item.member.name.toLowerCase().includes(searchTerm);
+
+                const matchesCategory = !categoryFilter || 
+                    item.item.type === categoryFilter;
+
+                const matchesStatus = !statusFilter || 
+                    item.status === statusFilter;
+
+                return matchesSearch && matchesCategory && matchesStatus;
+            });
+
+            renderItems(filtered);
+            updateSummary(filtered);
+        }
+
+        function sortItems(field) {
+            mockOverdueItems.sort((a, b) => {
+                if(a[field] < b[field]) return -1;
+                if(a[field] > b[field]) return 1;
+                return 0;
+            });
+            renderItems(mockOverdueItems);
+        }
+
+        function showReminderModal(itemId) {
+            const item = mockOverdueItems.find(i => i.id === itemId);
+            document.getElementById('reminder-recipient').innerHTML = `
+                ${item.member.name}<br>
+                <small>${item.member.email}<br>${item.member.phone}</small>
+            `;
+            document.getElementById('reminder-modal').classList.add('show');
+        }
+
+        function exportReport() {
+            // Implement export functionality
+            alert('Exporting report...');
+        }
+
+        // Close modal
+        document.querySelector('#reminder-modal .close').addEventListener('click', () => {
+            document.getElementById('reminder-modal').classList.remove('show');
+        });
+    </script>
+</body>
+</html>

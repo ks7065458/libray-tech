@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inventory Management | LibraTech</title>
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="../activity.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <a href="../index.html" class="logo">Libra<span>Tech</span></a>
+            <div class="nav-links">
+                <a href="../index.html"><i class="fas fa-home"></i> Home</a>
+                <a href="../books/browse-books.html"><i class="fas fa-book"></i> Books</a>
+                <a href="../members/manage-members.html"><i class="fas fa-users"></i> Members</a>
+                <a href="../transactions/checkout.html"><i class="fas fa-exchange-alt"></i> Transactions</a>
+                <a href="../reports/overdue.html"><i class="fas fa-chart-bar"></i> Reports</a>
+                <a href="../admin/dashboard.html"><i class="fas fa-cog"></i> Admin</a>
+                <a href="#" id="login-btn"><i class="fas fa-sign-in-alt"></i> Login</a>
+            </div>
+            <div class="hamburger">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Inventory Header -->
+    <section class="inventory-header">
+        <div class="container">
+            <div>
+                <h1>Inventory Management</h1>
+                <p>Manage and track all library assets and resources</p>
+            </div>
+            <div class="header-actions">
+                <a href="#" class="btn secondary" id="refresh-inventory"><i class="fas fa-sync-alt"></i> Refresh</a>
+                <a href="#" class="btn primary" id="add-item"><i class="fas fa-plus"></i> Add Item</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Inventory Summary -->
+    <div class="container">
+        <div class="summary-grid">
+            <div class="summary-card primary">
+                <div class="summary-icon">
+                    <i class="fas fa-boxes"></i>
+                </div>
+                <div class="summary-content">
+                    <h3 id="total-items">0</h3>
+                    <p>Total Items</p>
+                </div>
+            </div>
+            <div class="summary-card success">
+                <div class="summary-icon">
+                    <i class="fas fa-check-circle"></i>
+                </div>
+                <div class="summary-content">
+                    <h3 id="available-items">0</h3>
+                    <p>Available Now</p>
+                </div>
+            </div>
+            <div class="summary-card warning">
+                <div class="summary-icon">
+                    <i class="fas fa-tools"></i>
+                </div>
+                <div class="summary-content">
+                    <h3 id="maintenance-items">0</h3>
+                    <p>Under Maintenance</p>
+                </div>
+            </div>
+            <div class="summary-card info">
+                <div class="summary-icon">
+                    <i class="fas fa-exclamation-triangle"></i>
+                </div>
+                <div class="summary-content">
+                    <h3 id="missing-items">0</h3>
+                    <p>Missing Items</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Inventory Table -->
+    <div class="container">
+        <div class="inventory-tools">
+            <div class="search-filter">
+                <input type="text" id="search-inventory" placeholder="Search inventory...">
+                <div class="filter-group">
+                    <select id="filter-location">
+                        <option value="">All Locations</option>
+                        <option value="main-library">Main Library</option>
+                        <option value="children-section">Children Section</option>
+                        <option value="media-room">Media Room</option>
+                    </select>
+                    <select id="filter-status">
+                        <option value="">All Statuses</option>
+                        <option value="available">Available</option>
+                        <option value="checked-out">Checked Out</option>
+                        <option value="maintenance">Maintenance</option>
+                        <option value="lost">Lost</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <div class="inventory-table-container">
+            <table class="inventory-table">
+                <thead>
+                    <tr>
+                        <th data-sort="thumbnail"></th>
+                        <th data-sort="title">Item Title <i class="fas fa-sort"></i></th>
+                        <th data-sort="id">Inventory ID <i class="fas fa-sort"></i></th>
+                        <th data-sort="type">Type <i class="fas fa-sort"></i></th>
+                        <th data-sort="location">Location <i class="fas fa-sort"></i></th>
+                        <th data-sort="status">Status <i class="fas fa-sort"></i></th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="inventory-items">
+                    <!-- Dynamically populated from MongoDB -->
+                    <tr class="empty-row">
+                        <td colspan="7">
+                            <div class="empty-state">
+                                <i class="fas fa-box-open"></i>
+                                <p>No inventory items found</p>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Pagination -->
+        <div class="pagination">
+            <button class="btn outline" id="prev-page"><i class="fas fa-chevron-left"></i></button>
+            <span id="page-info">Page 1 of 1</span>
+            <button class="btn outline" id="next-page"><i class="fas fa-chevron-right"></i></button>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <!-- Same footer as previous pages -->
+        </div>
+    </footer>
+
+    <!-- Inventory Item Modal -->
+    <div class="modal" id="item-modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2><i class="fas fa-edit"></i> Edit Inventory Item</h2>
+            <form id="inventory-form">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="item-title">Item Title</label>
+                        <input type="text" id="item-title" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="item-type">Item Type</label>
+                        <select id="item-type" required>
+                            <option value="book">Book</option>
+                            <option value="media">Media</option>
+                            <option value="equipment">Equipment</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="item-location">Location</label>
+                        <select id="item-location" required>
+                            <option value="main-library">Main Library</option>
+                            <option value="children-section">Children Section</option>
+                            <option value="media-room">Media Room</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="item-status">Status</label>
+                        <select id="item-status" required>
+                            <option value="available">Available</option>
+                            <option value="checked-out">Checked Out</option>
+                            <option value="maintenance">Maintenance</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-actions">
+                    <button type="button" class="btn secondary" id="cancel-edit">Cancel</button>
+                    <button type="submit" class="btn primary">Save Changes</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="../scripts.js"></script>
+    <script>
+        // Mock data - Replace with MongoDB queries
+        const mockInventory = [
+            {
+                id: "INV2023001",
+                title: "Wireless Presentation Clicker",
+                type: "equipment",
+                location: "media-room",
+                status: "available",
+                lastCheckout: "2023-09-10",
+                barcode: "EQP00123",
+                thumbnail: "https://example.com/clicker.jpg"
+            },
+            {
+                id: "INV2023002",
+                title: "Children's Storytime Rug",
+                type: "other",
+                location: "children-section",
+                status: "available",
+                lastCheckout: "2023-09-15",
+                barcode: "OTH00456"
+            }
+        ];
+
+        let currentPage = 1;
+        const itemsPerPage = 10;
+
+        document.addEventListener('DOMContentLoaded', () => {
+            loadInventory();
+            setupEventListeners();
+        });
+
+        function loadInventory() {
+            // Simulate MongoDB fetch
+            // fetch(`/api/inventory?page=${currentPage}`)
+            //     .then(response => response.json())
+            //     .then(data => renderInventory(data));
+            
+            renderInventory(mockInventory);
+            updateSummary(mockInventory);
+        }
+
+        function renderInventory(items) {
+            const tbody = document.getElementById('inventory-items');
+            tbody.innerHTML = '';
+
+            if(items.length === 0) {
+                document.querySelector('.empty-row').style.display = '';
+                return;
+            }
+
+            document.querySelector('.empty-row').style.display = 'none';
+
+            items.forEach(item => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>
+                        ${item.thumbnail ? 
+                            `<img src="${item.thumbnail}" alt="${item.title}" class="item-thumbnail">` : 
+                            `<div class="thumbnail-placeholder"><i class="fas fa-box"></i></div>`}
+                    </td>
+                    <td>${item.title}</td>
+                    <td>${item.id}<br><small>${item.barcode}</small></td>
+                    <td><span class="badge">${item.type}</span></td>
+                    <td>${formatLocation(item.location)}</td>
+                    <td><span class="status ${item.status}">${formatStatus(item.status)}</span></td>
+                    <td>
+                        <div class="action-buttons">
+                            <button class="btn outline" onclick="editItem('${item.id}')">
+                                <i class="fas fa-edit"></i>
+                            </button>
+                            <button class="btn outline" onclick="viewHistory('${item.id}')">
+                                <i class="fas fa-history"></i>
+                            </button>
+                            <button class="btn outline" onclick="reportIssue('${item.id}')">
+                                <i class="fas fa-flag"></i>
+                            </button>
+                        </div>
+                    </td>
+                `;
+                tbody.appendChild(row);
+            });
+        }
+
+        function updateSummary(items) {
+            document.getElementById('total-items').textContent = items.length;
+            document.getElementById('available-items').textContent = 
+                items.filter(i => i.status === 'available').length;
+            document.getElementById('maintenance-items').textContent = 
+                items.filter(i => i.status === 'maintenance').length;
+            document.getElementById('missing-items').textContent = 
+                items.filter(i => i.status === 'lost').length;
+        }
+
+        function formatLocation(location) {
+            const locations = {
+                'main-library': 'Main Library',
+                'children-section': 'Children Section',
+                'media-room': 'Media Room'
+            };
+            return locations[location] || location;
+        }
+
+        function formatStatus(status) {
+            return status.charAt(0).toUpperCase() + status.slice(1);
+        }
+
+        function setupEventListeners() {
+            // Search and filter
+            document.getElementById('search-inventory').addEventListener('input', filterItems);
+            document.getElementById('filter-location').addEventListener('change', filterItems);
+            document.getElementById('filter-status').addEventListener('change', filterItems);
+
+            // Add item button
+            document.getElementById('add-item').addEventListener('click', () => {
+                // Implement add item functionality
+                alert('Add new item functionality');
+            });
+        }
+
+        function filterItems() {
+            const searchTerm = document.getElementById('search-inventory').value.toLowerCase();
+            const locationFilter = document.getElementById('filter-location').value;
+            const statusFilter = document.getElementById('filter-status').value;
+
+            const filtered = mockInventory.filter(item => {
+                const matchesSearch = item.title.toLowerCase().includes(searchTerm) ||
+                    item.id.toLowerCase().includes(searchTerm) ||
+                    item.barcode.includes(searchTerm);
+
+                const matchesLocation = !locationFilter || 
+                    item.location === locationFilter;
+
+                const matchesStatus = !statusFilter || 
+                    item.status === statusFilter;
+
+                return matchesSearch && matchesLocation && matchesStatus;
+            });
+
+            renderInventory(filtered);
+            updateSummary(filtered);
+        }
+
+        function editItem(itemId) {
+            const item = mockInventory.find(i => i.id === itemId);
+            // Populate modal fields
+            document.getElementById('item-title').value = item.title;
+            document.getElementById('item-type').value = item.type;
+            document.getElementById('item-location').value = item.location;
+            document.getElementById('item-status').value = item.status;
+            
+            document.getElementById('item-modal').classList.add('show');
+        }
+
+        // Close modal
+        document.querySelector('#item-modal .close').addEventListener('click', () => {
+            document.getElementById('item-modal').classList.remove('show');
+        });
+    </script>
+</body>
+</html>

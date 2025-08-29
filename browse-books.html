@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Browse Books | LibraTech</title>
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="../books/books.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <a href="../index.html" class="logo">Libra<span>Tech</span></a>
+            <div class="nav-links">
+                <a href="../index.html"><i class="fas fa-home"></i> Home</a>
+                <a href="browse-books.html" class="active"><i class="fas fa-book"></i> Books</a>
+                <a href="../members/manage-members.html"><i class="fas fa-users"></i> Members</a>
+                <a href="../transactions/checkout.html"><i class="fas fa-exchange-alt"></i> Transactions</a>
+                <a href="../reports/overdue.html"><i class="fas fa-chart-bar"></i> Reports</a>
+                <a href="../admin/dashboard.html"><i class="fas fa-cog"></i> Admin</a>
+                <a href="#" id="login-btn"><i class="fas fa-sign-in-alt"></i> Login</a>
+            </div>
+            <div class="hamburger">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="book-management">
+        <div class="container">
+            <div class="page-header">
+                <h1><i class="fas fa-book-open"></i> Book Catalog</h1>
+                <div class="breadcrumb">
+                    <a href="../index.html">Home</a> / 
+                    <span>Books</span>
+                </div>
+                <div class="page-actions">
+                    <a href="add-book.html" class="btn primary">
+                        <i class="fas fa-plus"></i> Add New Book
+                    </a>
+                </div>
+            </div>
+
+            <div class="book-search-filter">
+                <div class="search-box">
+                    <input type="text" id="book-search" placeholder="Search by title, author, ISBN...">
+                    <button type="button" class="search-btn">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </div>
+                <div class="filter-options">
+                    <select id="genre-filter">
+                        <option value="">All Genres</option>
+                        <option value="Fiction">Fiction</option>
+                        <option value="Non-Fiction">Non-Fiction</option>
+                        <option value="Science Fiction">Science Fiction</option>
+                        <option value="Fantasy">Fantasy</option>
+                        <option value="Mystery">Mystery</option>
+                    </select>
+                    <select id="availability-filter">
+                        <option value="">All Availability</option>
+                        <option value="available">Available Only</option>
+                        <option value="unavailable">Checked Out</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="book-list-container">
+                <div class="book-list-header">
+                    <div class="sort-options">
+                        <span>Sort by:</span>
+                        <select id="sort-by">
+                            <option value="title-asc">Title (A-Z)</option>
+                            <option value="title-desc">Title (Z-A)</option>
+                            <option value="author-asc">Author (A-Z)</option>
+                            <option value="author-desc">Author (Z-A)</option>
+                            <option value="year-new">Publication Year (Newest)</option>
+                            <option value="year-old">Publication Year (Oldest)</option>
+                        </select>
+                    </div>
+                    <div class="total-books">
+                        <span id="total-books-count">245</span> books found
+                    </div>
+                </div>
+
+                <div class="book-list">
+                    <!-- Book items will be loaded here from MongoDB -->
+                    <div class="book-item">
+                        <div class="book-cover">
+                            <img src="../assets/book-covers/dune.jpg" alt="Dune Cover">
+                        </div>
+                        <div class="book-info">
+                            <h3>Dune</h3>
+                            <p class="author">Frank Herbert</p>
+                            <p class="meta"><span class="genre">Science Fiction</span> • <span class="year">1965</span></p>
+                            <p class="isbn">ISBN: 9780441172719</p>
+                            <div class="availability">
+                                <span class="status available">12 copies available</span>
+                            </div>
+                        </div>
+                        <div class="book-actions">
+                            <a href="book-details.html?id=1" class="btn outline">
+                                <i class="fas fa-eye"></i> View
+                            </a>
+                            <a href="../transactions/checkout.html?book=1" class="btn primary">
+                                <i class="fas fa-exchange-alt"></i> Checkout
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="book-item">
+                        <div class="book-cover">
+                            <img src="../assets/book-covers/to-kill-a-mockingbird.jpg" alt="To Kill a Mockingbird Cover">
+                        </div>
+                        <div class="book-info">
+                            <h3>To Kill a Mockingbird</h3>
+                            <p class="author">Harper Lee</p>
+                            <p class="meta"><span class="genre">Fiction</span> • <span class="year">1960</span></p>
+                            <p class="isbn">ISBN: 9780061120084</p>
+                            <div class="availability">
+                                <span class="status low">2 copies available</span>
+                            </div>
+                        </div>
+                        <div class="book-actions">
+                            <a href="book-details.html?id=2" class="btn outline">
+                                <i class="fas fa-eye"></i> View
+                            </a>
+                            <a href="../transactions/checkout.html?book=2" class="btn primary">
+                                <i class="fas fa-exchange-alt"></i> Checkout
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="book-item">
+                        <div class="book-cover">
+                            <img src="../assets/book-covers/1984.jpg" alt="1984 Cover">
+                        </div>
+                        <div class="book-info">
+                            <h3>1984</h3>
+                            <p class="author">George Orwell</p>
+                            <p class="meta"><span class="genre">Dystopian</span> • <span class="year">1949</span></p>
+                            <p class="isbn">ISBN: 9780451524935</p>
+                            <div class="availability">
+                                <span class="status unavailable">All copies checked out</span>
+                            </div>
+                        </div>
+                        <div class="book-actions">
+                            <a href="book-details.html?id=3" class="btn outline">
+                                <i class="fas fa-eye"></i> View
+                            </a>
+                            <button class="btn primary" disabled>
+                                <i class="fas fa-exchange-alt"></i> Checkout
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="pagination">
+                    <button class="btn outline" disabled>
+                        <i class="fas fa-chevron-left"></i> Previous
+                    </button>
+                    <div class="page-numbers">
+                        <span class="active">1</span>
+                        <a href="#">2</a>
+                        <a href="#">3</a>
+                        <span>...</span>
+                        <a href="#">8</a>
+                    </div>
+                    <button class="btn outline">
+                        Next <i class="fas fa-chevron-right"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h3>LibraTech</h3>
+                    <p>Modern library management solution for schools, universities, and public libraries.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="browse-books.html">Book Catalog</a></li>
+                        <li><a href="../members/manage-members.html">Member Directory</a></li>
+                        <li><a href="../transactions/checkout.html">Checkout Books</a></li>
+                        <li><a href="../reports/overdue.html">Overdue Reports</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Support</h3>
+                    <ul>
+                        <li><a href="#">Documentation</a></li>
+                        <li><a href="#">API Reference</a></li>
+                        <li><a href="#">Help Center</a></li>
+                        <li><a href="#">Contact Us</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Newsletter</h3>
+                    <p>Subscribe to get updates on new features.</p>
+                    <form id="newsletter-form">
+                        <input type="email" placeholder="Your email address" required>
+                        <button type="submit" class="btn primary">Subscribe</button>
+                    </form>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 LibraTech. All rights reserved.</p>
+                <div class="footer-links">
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../scripts.js"></script>
+    <script src="books.js"></script>
+</body>
+</html>

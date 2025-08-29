@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add New Member | LibraTech</title>
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="../member.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <a href="../index.html" class="logo">Libra<span>Tech</span></a>
+            <div class="nav-links">
+                <a href="../index.html"><i class="fas fa-home"></i> Home</a>
+                <a href="../books/browse-books.html"><i class="fas fa-book"></i> Books</a>
+                <a href="manage-members.html" class="active"><i class="fas fa-users"></i> Members</a>
+                <a href="../transactions/checkout.html"><i class="fas fa-exchange-alt"></i> Transactions</a>
+                <a href="../reports/overdue.html"><i class="fas fa-chart-bar"></i> Reports</a>
+                <a href="../admin/dashboard.html"><i class="fas fa-cog"></i> Admin</a>
+                <a href="#" id="login-btn"><i class="fas fa-sign-in-alt"></i> Login</a>
+            </div>
+            <div class="hamburger">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Member Header -->
+    <section class="member-header">
+        <div class="container">
+            <div>
+                <h1>Add New Member</h1>
+                <p>Register a new library member to grant them borrowing privileges</p>
+            </div>
+            <div class="member-actions">
+                <a href="manage-members.html" class="btn secondary"><i class="fas fa-arrow-left"></i> Back to Members</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Member Form -->
+    <div class="container">
+        <form class="member-form" id="add-member-form">
+            <h2><i class="fas fa-user-plus"></i> Member Information</h2>
+            
+            <div class="member-form-row">
+                <div class="member-form-group">
+                    <label for="first-name">First Name *</label>
+                    <input type="text" id="first-name" required>
+                </div>
+                <div class="member-form-group">
+                    <label for="last-name">Last Name *</label>
+                    <input type="text" id="last-name" required>
+                </div>
+            </div>
+            
+            <div class="member-form-row">
+                <div class="member-form-group">
+                    <label for="email">Email Address *</label>
+                    <input type="email" id="email" required>
+                </div>
+                <div class="member-form-group">
+                    <label for="phone">Phone Number</label>
+                    <input type="tel" id="phone">
+                </div>
+            </div>
+            
+            <div class="member-form-row">
+                <div class="member-form-group">
+                    <label for="address">Address</label>
+                    <input type="text" id="address">
+                </div>
+                <div class="member-form-group">
+                    <label for="city">City</label>
+                    <input type="text" id="city">
+                </div>
+            </div>
+            
+            <div class="member-form-row">
+                <div class="member-form-group">
+                    <label for="state">State/Province</label>
+                    <input type="text" id="state">
+                </div>
+                <div class="member-form-group">
+                    <label for="zip">ZIP/Postal Code</label>
+                    <input type="text" id="zip">
+                </div>
+            </div>
+            
+            <div class="member-form-row">
+                <div class="member-form-group">
+                    <label for="dob">Date of Birth</label>
+                    <input type="date" id="dob">
+                </div>
+                <div class="member-form-group">
+                    <label for="member-since">Member Since *</label>
+                    <input type="date" id="member-since" required value="">
+                </div>
+            </div>
+            
+            <div class="member-form-row">
+                <div class="member-form-group">
+                    <label for="member-type">Member Type *</label>
+                    <select id="member-type" required>
+                        <option value="">Select Member Type</option>
+                        <option value="student">Student</option>
+                        <option value="faculty">Faculty</option>
+                        <option value="staff">Staff</option>
+                        <option value="community">Community Member</option>
+                    </select>
+                </div>
+                <div class="member-form-group">
+                    <label for="status">Status *</label>
+                    <select id="status" required>
+                        <option value="active">Active</option>
+                        <option value="inactive">Inactive</option>
+                    </select>
+                </div>
+            </div>
+            
+            <div class="member-form-group">
+                <label for="notes">Notes</label>
+                <textarea id="notes" placeholder="Any additional notes about this member"></textarea>
+            </div>
+            
+            <div class="member-form-actions">
+                <button type="reset" class="btn outline">Reset Form</button>
+                <button type="submit" class="btn primary">Add Member</button>
+            </div>
+        </form>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h3>LibraTech</h3>
+                    <p>Modern library management solution for schools, universities, and public libraries.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="../books/browse-books.html">Book Catalog</a></li>
+                        <li><a href="manage-members.html">Member Directory</a></li>
+                        <li><a href="../transactions/checkout.html">Checkout Books</a></li>
+                        <li><a href="../reports/overdue.html">Overdue Reports</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Support</h3>
+                    <ul>
+                        <li><a href="#">Documentation</a></li>
+                        <li><a href="#">API Reference</a></li>
+                        <li><a href="#">Help Center</a></li>
+                        <li><a href="#">Contact Us</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Newsletter</h3>
+                    <p>Subscribe to get updates on new features.</p>
+                    <form id="newsletter-form">
+                        <input type="email" placeholder="Your email address" required>
+                        <button type="submit" class="btn primary">Subscribe</button>
+                    </form>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 LibraTech. All rights reserved.</p>
+                <div class="footer-links">
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../scripts.js"></script>
+    <script>
+        // Set today's date as default for Member Since
+        document.getElementById('member-since').valueAsDate = new Date();
+        
+        // Form submission
+        document.getElementById('add-member-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            // In a real app, you would send this data to your backend
+            alert('Member added successfully!');
+            window.location.href = 'manage-members.html';
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,469 @@
+/* Member Management Styles */
+.member-header {
+    background-color: var(--primary-color);
+    color: white;
+    padding: 80px 0 40px;
+    margin-bottom: 40px;
+}
+
+.member-header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.member-header h1 {
+    font-size: 2.2rem;
+    margin-bottom: 10px;
+}
+
+.member-header p {
+    opacity: 0.9;
+    max-width: 600px;
+}
+
+.member-actions {
+    display: flex;
+    gap: 15px;
+}
+
+/* Member Search and Filters */
+.member-tools {
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    margin-bottom: 30px;
+}
+
+.member-search-bar {
+    display: flex;
+    margin-bottom: 20px;
+}
+
+.member-search-bar input {
+    flex: 1;
+    padding: 12px 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px 0 0 5px;
+    font-size: 16px;
+}
+
+.member-search-bar button {
+    padding: 0 20px;
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 0 5px 5px 0;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.member-search-bar button:hover {
+    background-color: var(--secondary-color);
+}
+
+.member-filter-options {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.member-filter-group {
+    flex: 1;
+    min-width: 200px;
+}
+
+.member-filter-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 500;
+    font-size: 0.9rem;
+}
+
+.member-filter-group select, 
+.member-filter-group input {
+    width: 100%;
+    padding: 10px 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+/* Member Table */
+.member-table-container {
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    overflow-x: auto;
+    margin-bottom: 40px;
+}
+
+.member-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.member-table th {
+    background-color: var(--light-gray);
+    padding: 15px;
+    text-align: left;
+    font-weight: 600;
+    color: var(--dark-color);
+}
+
+.member-table td {
+    padding: 15px;
+    border-top: 1px solid #eee;
+    vertical-align: middle;
+}
+
+.member-table tr:hover {
+    background-color: rgba(67, 97, 238, 0.05);
+}
+
+.member-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: var(--light-gray);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.member-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.member-name {
+    font-weight: 500;
+    color: var(--dark-color);
+}
+
+.member-id {
+    font-size: 0.85rem;
+    color: var(--gray-color);
+}
+
+.member-status {
+    display: inline-block;
+    padding: 5px 10px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 500;
+}
+
+.member-status.active {
+    background-color: rgba(76, 201, 240, 0.2);
+    color: var(--success-color);
+}
+
+.member-status.inactive {
+    background-color: rgba(247, 37, 133, 0.2);
+    color: var(--danger-color);
+}
+
+.member-actions-cell {
+    display: flex;
+    gap: 10px;
+}
+
+.member-actions-cell .btn {
+    padding: 8px 12px;
+    font-size: 0.85rem;
+}
+
+/* Member Profile Page */
+.member-profile-page {
+    display: grid;
+    grid-template-columns: 300px 1fr;
+    gap: 40px;
+    margin-bottom: 40px;
+}
+
+.member-profile-card {
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    padding: 30px;
+    text-align: center;
+}
+
+.member-profile-avatar {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    background-color: var(--light-gray);
+    margin: 0 auto 20px;
+    overflow: hidden;
+    position: relative;
+}
+
+.member-profile-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.member-profile-avatar .edit-avatar {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    width: 40px;
+    height: 40px;
+    background-color: var(--primary-color);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.member-profile-name {
+    font-size: 1.5rem;
+    margin-bottom: 5px;
+    color: var(--dark-color);
+}
+
+.member-profile-id {
+    color: var(--gray-color);
+    margin-bottom: 20px;
+    font-size: 0.9rem;
+}
+
+.member-profile-status {
+    display: inline-block;
+    padding: 8px 15px;
+    border-radius: 20px;
+    font-weight: 500;
+    margin-bottom: 25px;
+}
+
+.member-profile-meta {
+    margin: 25px 0;
+}
+
+.member-profile-meta-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 0;
+    border-bottom: 1px solid #eee;
+}
+
+.member-profile-meta-item:last-child {
+    border-bottom: none;
+}
+
+.member-profile-meta-label {
+    color: var(--gray-color);
+    font-size: 0.9rem;
+}
+
+.member-profile-meta-value {
+    font-weight: 500;
+}
+
+.member-profile-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 30px;
+}
+
+.member-details {
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    padding: 30px;
+}
+
+.member-details-section {
+    margin-bottom: 30px;
+}
+
+.member-details-section h3 {
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #eee;
+    color: var(--dark-color);
+}
+
+.member-details-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+.member-detail-item {
+    margin-bottom: 15px;
+}
+
+.member-detail-label {
+    font-size: 0.9rem;
+    color: var(--gray-color);
+    margin-bottom: 5px;
+}
+
+.member-detail-value {
+    font-weight: 500;
+    padding: 8px 12px;
+    background-color: var(--light-gray);
+    border-radius: 5px;
+}
+
+.member-books-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.member-books-table th {
+    background-color: var(--light-gray);
+    padding: 12px 15px;
+    text-align: left;
+    font-weight: 600;
+    color: var(--dark-color);
+    font-size: 0.9rem;
+}
+
+.member-books-table td {
+    padding: 12px 15px;
+    border-top: 1px solid #eee;
+    vertical-align: middle;
+    font-size: 0.9rem;
+}
+
+.member-books-table tr:hover {
+    background-color: rgba(67, 97, 238, 0.05);
+}
+
+.book-due-date.overdue {
+    color: var(--danger-color);
+    font-weight: 500;
+}
+
+/* Add/Edit Member Form */
+.member-form {
+    background-color: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    max-width: 800px;
+    margin: 0 auto 40px;
+}
+
+.member-form h2 {
+    margin-bottom: 25px;
+    text-align: center;
+    color: var(--dark-color);
+}
+
+.member-form-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
+.member-form-group {
+    margin-bottom: 15px;
+}
+
+.member-form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 500;
+    font-size: 0.9rem;
+}
+
+.member-form-group input,
+.member-form-group select,
+.member-form-group textarea {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 16px;
+    transition: border-color 0.3s ease;
+}
+
+.member-form-group textarea {
+    min-height: 100px;
+    resize: vertical;
+}
+
+.member-form-group input:focus,
+.member-form-group select:focus,
+.member-form-group textarea:focus {
+    border-color: var(--primary-color);
+    outline: none;
+}
+
+.member-form-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 15px;
+    margin-top: 30px;
+}
+
+/* Responsive Design */
+@media (max-width: 992px) {
+    .member-profile-page {
+        grid-template-columns: 1fr;
+    }
+    
+    .member-profile-card {
+        max-width: 400px;
+        margin: 0 auto;
+    }
+}
+
+@media (max-width: 768px) {
+    .member-header .container {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .member-actions {
+        justify-content: center;
+    }
+    
+    .member-table th,
+    .member-table td {
+        padding: 12px 10px;
+    }
+    
+    .member-actions-cell {
+        flex-direction: column;
+    }
+    
+    .member-form-row {
+        grid-template-columns: 1fr;
+    }
+    
+    .member-form-actions {
+        flex-direction: column;
+    }
+    
+    .member-form-actions .btn {
+        width: 100%;
+    }
+}
+
+@media (max-width: 576px) {
+    .member-filter-options {
+        flex-direction: column;
+    }
+    
+    .member-profile-meta-item {
+        flex-direction: column;
+        gap: 5px;
+    }
+}

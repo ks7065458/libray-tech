@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Details | LibraTech</title>
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="../books/books.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <a href="../index.html" class="logo">Libra<span>Tech</span></a>
+            <div class="nav-links">
+                <a href="../index.html"><i class="fas fa-home"></i> Home</a>
+                <a href="browse-books.html" class="active"><i class="fas fa-book"></i> Books</a>
+                <a href="../members/manage-members.html"><i class="fas fa-users"></i> Members</a>
+                <a href="../transactions/checkout.html"><i class="fas fa-exchange-alt"></i> Transactions</a>
+                <a href="../reports/overdue.html"><i class="fas fa-chart-bar"></i> Reports</a>
+                <a href="../admin/dashboard.html"><i class="fas fa-cog"></i> Admin</a>
+                <a href="#" id="login-btn"><i class="fas fa-sign-in-alt"></i> Login</a>
+            </div>
+            <div class="hamburger">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="book-management">
+        <div class="container">
+            <div class="page-header">
+                <h1><i class="fas fa-book"></i> Book Details</h1>
+                <div class="breadcrumb">
+                    <a href="../index.html">Home</a> / 
+                    <a href="browse-books.html">Books</a> / 
+                    <span>Details</span>
+                </div>
+                <div class="page-actions">
+                    <a href="browse-books.html" class="btn secondary">
+                        <i class="fas fa-arrow-left"></i> Back to Catalog
+                    </a>
+                    <a href="add-book.html" class="btn outline">
+                        <i class="fas fa-plus"></i> Add New Book
+                    </a>
+                </div>
+            </div>
+
+            <div class="book-detail-container">
+                <div class="book-detail-header">
+                    <div class="book-cover-large">
+                        <img src="../assets/book-covers/dune.jpg" alt="Dune Cover">
+                    </div>
+                    <div class="book-header-info">
+                        <h2>Dune</h2>
+                        <p class="author">by Frank Herbert</p>
+                        <div class="book-meta">
+                            <span class="genre">Science Fiction</span>
+                            <span class="year">1965</span>
+                            <span class="isbn">ISBN: 9780441172719</span>
+                        </div>
+                        <div class="availability">
+                            <span class="status available">12 copies available</span>
+                            <span class="total-copies">(15 total copies)</span>
+                        </div>
+                        <div class="book-actions">
+                            <a href="../transactions/checkout.html?book=1" class="btn primary">
+                                <i class="fas fa-exchange-alt"></i> Checkout Book
+                            </a>
+                            <a href="#" class="btn outline" id="edit-book">
+                                <i class="fas fa-edit"></i> Edit Details
+                            </a>
+                            <a href="#" class="btn danger" id="delete-book">
+                                <i class="fas fa-trash"></i> Delete Book
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="book-detail-content">
+                    <div class="book-description">
+                        <h3>Description</h3>
+                        <p>Dune is a 1965 science fiction novel by American author Frank Herbert, originally published as two separate serials in Analog magazine. It tied with Roger Zelazny's This Immortal for the Hugo Award in 1966 and it won the inaugural Nebula Award for Best Novel. It is the first installment of the Dune saga.</p>
+                        <p>Set in the distant future amidst a feudal interstellar society in which various noble houses control planetary fiefs, Dune tells the story of young Paul Atreides, whose family accepts the stewardship of the planet Arrakis. While the planet is an inhospitable and sparsely populated desert wasteland, it is the only source of melange, or "spice", a drug that extends life and enhances mental abilities. Melange is also necessary for space navigation, which requires a kind of multidimensional awareness and foresight that only the drug provides. As melange can only be produced on Arrakis, control of the planet is a coveted and dangerous undertaking. The story explores the multilayered interactions of politics, religion, ecology, technology, and human emotion, as the factions of the empire confront each other in a struggle for the control of Arrakis and its spice.</p>
+                    </div>
+
+                    <div class="book-details-grid">
+                        <div class="detail-card">
+                            <h4>Publisher</h4>
+                            <p>Chilton Books</p>
+                        </div>
+                        <div class="detail-card">
+                            <h4>Publication Date</h4>
+                            <p>August 1965</p>
+                        </div>
+                        <div class="detail-card">
+                            <h4>Pages</h4>
+                            <p>412</p>
+                        </div>
+                        <div class="detail-card">
+                            <h4>Language</h4>
+                            <p>English</p>
+                        </div>
+                        <div class="detail-card">
+                            <h4>Format</h4>
+                            <p>Hardcover, Paperback, eBook</p>
+                        </div>
+                        <div class="detail-card">
+                            <h4>Subjects</h4>
+                            <p>Science fiction, Political fiction</p>
+                        </div>
+                    </div>
+
+                    <div class="book-copies">
+                        <h3>Copy Information</h3>
+                        <div class="copies-table">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Copy ID</th>
+                                        <th>Barcode</th>
+                                        <th>Status</th>
+                                        <th>Location</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>DUN-001</td>
+                                        <td>9780441172719001</td>
+                                        <td><span class="status available">Available</span></td>
+                                        <td>Main Library - Shelf A12</td>
+                                        <td>
+                                            <a href="../transactions/checkout.html?copy=DUN-001" class="btn small primary">Checkout</a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>DUN-002</td>
+                                        <td>9780441172719002</td>
+                                        <td><span class="status available">Available</span></td>
+                                        <td>Main Library - Shelf A12</td>
+                                        <td>
+                                            <a href="../transactions/checkout.html?copy=DUN-002" class="btn small primary">Checkout</a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>DUN-003</td>
+                                        <td>9780441172719003</td>
+                                        <td><span class="status checked-out">Checked Out</span></td>
+                                        <td>Main Library - Shelf A12</td>
+                                        <td>
+                                            <span class="due-date">Due: 2023-11-15</span>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div class="book-history">
+                        <h3>Checkout History</h3>
+                        <div class="history-list">
+                            <div class="history-item">
+                                <div class="history-icon">
+                                    <i class="fas fa-exchange-alt"></i>
+                                </div>
+                                <div class="history-details">
+                                    <p><strong>John Smith</strong> checked out this book on <strong>Oct 10, 2023</strong></p>
+                                    <small>Due date: Nov 10, 2023</small>
+                                </div>
+                            </div>
+                            <div class="history-item">
+                                <div class="history-icon">
+                                    <i class="fas fa-exchange-alt"></i>
+                                </div>
+                                <div class="history-details">
+                                    <p><strong>Sarah Johnson</strong> checked out this book on <strong>Sep 5, 2023</strong></p>
+                                    <small>Returned on: Oct 5, 2023</small>
+                                </div>
+                            </div>
+                            <div class="history-item">
+                                <div class="history-icon">
+                                    <i class="fas fa-exchange-alt"></i>
+                                </div>
+                                <div class="history-details">
+                                    <p><strong>Michael Brown</strong> checked out this book on <strong>Aug 12, 2023</strong></p>
+                                    <small>Returned on: Sep 10, 2023</small>
+                                </div>
+                            </div>
+                        </div>
+                        <a href="#" class="btn outline">View Full History</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Delete Confirmation Modal -->
+    <div class="modal" id="delete-modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Confirm Deletion</h2>
+            <p>Are you sure you want to delete this book from the library system? This action cannot be undone.</p>
+            <div class="modal-actions">
+                <button class="btn danger" id="confirm-delete">Delete Book</button>
+                <button class="btn outline" id="cancel-delete">Cancel</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h3>LibraTech</h3>
+                    <p>Modern library management solution for schools, universities, and public libraries.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="browse-books.html">Book Catalog</a></li>
+                        <li><a href="../members/manage-members.html">Member Directory</a></li>
+                        <li><a href="../transactions/checkout.html">Checkout Books</a></li>
+                        <li><a href="../reports/overdue.html">Overdue Reports</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Support</h3>
+                    <ul>
+                        <li><a href="#">Documentation</a></li>
+                        <li><a href="#">API Reference</a></li>
+                        <li><a href="#">Help Center</a></li>
+                        <li><a href="#">Contact Us</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Newsletter</h3>
+                    <p>Subscribe to get updates on new features.</p>
+                    <form id="newsletter-form">
+                        <input type="email" placeholder="Your email address" required>
+                        <button type="submit" class="btn primary">Subscribe</button>
+                    </form>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 LibraTech. All rights reserved.</p>
+                <div class="footer-links">
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../scripts.js"></script>
+    <script src="books.js"></script>
+</body>
+</html>

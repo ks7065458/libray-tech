@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Management | LibraTech</title>
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="admin.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <!-- Same navigation as dashboard -->
+         <div class="container">
+        <a href="../index.html" class="logo">Libra<span>Tech</span></a>
+        <div class="nav-links">
+            <a href="../index.html"><i class="fas fa-home"></i> Home</a>
+            <a href="dashboard.html" class="active"><i class="fas fa-tachometer-alt"></i> Dashboard</a>
+            <a href="users.html"><i class="fas fa-users-cog"></i> Users</a>
+            <a href="settings.html"><i class="fas fa-cogs"></i> Settings</a>
+            <a href="#" id="logout-btn"><i class="fas fa-sign-out-alt"></i> Logout</a>
+        </div>
+        <div class="hamburger">
+            <i class="fas fa-bars"></i>
+        </div>
+    </div>
+    </nav>
+
+    <!-- Users Header -->
+    <section class="users-header">
+        <div class="container">
+            <h1><i class="fas fa-users-cog"></i> User Management</h1>
+            <div class="user-actions">
+                <button class="btn primary" id="add-user-btn"><i class="fas fa-user-plus"></i> Add User</button>
+                <div class="search-filter">
+                    <input type="text" placeholder="Search users...">
+                    <select id="role-filter">
+                        <option value="">All Roles</option>
+                        <option value="admin">Admin</option>
+                        <option value="staff">Staff</option>
+                        <option value="member">Member</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Users Table -->
+    <div class="container">
+        <div class="users-table">
+            <table>
+                <thead>
+                    <tr>
+                        <th><input type="checkbox" id="select-all"></th>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Role</th>
+                        <th>Last Login</th>
+                        <th>Status</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><input type="checkbox"></td>
+                        <td>Admin User</td>
+                        <td>admin@libratech.com</td>
+                        <td><span class="role-badge admin">Admin</span></td>
+                        <td>2 hours ago</td>
+                        <td><span class="status active">Active</span></td>
+                        <td>
+                            <button class="btn icon"><i class="fas fa-edit"></i></button>
+                            <button class="btn icon danger"><i class="fas fa-trash"></i></button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Bulk Actions -->
+        <div class="bulk-actions">
+            <select id="bulk-action">
+                <option value="">Bulk Actions</option>
+                <option value="activate">Activate</option>
+                <option value="deactivate">Deactivate</option>
+                <option value="delete">Delete</option>
+            </select>
+            <button class="btn secondary">Apply</button>
+        </div>
+    </div>
+
+    <!-- Add User Modal -->
+    <div class="modal" id="user-modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2><i class="fas fa-user-plus"></i> Add New User</h2>
+            <form id="user-form">
+                <div class="form-group">
+                    <label>Full Name</label>
+                    <input type="text" required>
+                </div>
+                <div class="form-group">
+                    <label>Email</label>
+                    <input type="email" required>
+                </div>
+                <div class="form-group">
+                    <label>Role</label>
+                    <select required>
+                        <option value="member">Member</option>
+                        <option value="staff">Staff</option>
+                        <option value="admin">Admin</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn primary">Create User</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="../scripts.js"></script>
+</body>
+</html>

@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Returns | LibraTech</title>
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="../transactions.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <a href="../index.html" class="logo">Libra<span>Tech</span></a>
+            <div class="nav-links">
+                <a href="../index.html"><i class="fas fa-home"></i> Home</a>
+                <a href="../books/browse-books.html"><i class="fas fa-book"></i> Books</a>
+                <a href="../members/manage-members.html"><i class="fas fa-users"></i> Members</a>
+                <a href="checkout.html" class="active"><i class="fas fa-exchange-alt"></i> Transactions</a>
+                <a href="../reports/overdue.html"><i class="fas fa-chart-bar"></i> Reports</a>
+                <a href="../admin/dashboard.html"><i class="fas fa-cog"></i> Admin</a>
+                <a href="#" id="login-btn"><i class="fas fa-sign-in-alt"></i> Login</a>
+            </div>
+            <div class="hamburger">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Returns Header -->
+    <section class="returns-header">
+        <div class="container">
+            <div>
+                <h1>Manage Returns</h1>
+                <p>Process book returns and manage overdue items</p>
+            </div>
+            <div class="returns-actions">
+                <a href="checkout.html" class="btn secondary"><i class="fas fa-book"></i> New Checkout</a>
+                <a href="history.html" class="btn outline"><i class="fas fa-history"></i> View History</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Returns Container -->
+    <div class="container">
+        <div class="returns-container">
+            <!-- Member Section -->
+            <div class="returns-section">
+                <h2><i class="fas fa-user"></i> Member Identification</h2>
+                <div class="member-search">
+                    <div class="barcode-scanner">
+                        <input type="text" id="return-member-barcode" placeholder="Scan member barcode">
+                        <button class="btn secondary" id="scan-return-member">
+                            <i class="fas fa-camera"></i> Scan
+                        </button>
+                    </div>
+                    <div class="member-details-card" id="return-member-details">
+                        <div class="member-info-placeholder">
+                            <i class="fas fa-user-slash"></i>
+                            <p>No member selected</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Checked-out Items -->
+            <div class="returns-section">
+                <h2><i class="fas fa-book"></i> Checked-out Items</h2>
+                <div class="checkedout-items">
+                    <div class="items-list" id="checkedout-items-list">
+                        <!-- Dynamically populated from MongoDB -->
+                        <div class="empty-state">
+                            <i class="fas fa-search"></i>
+                            <p>Scan a member to view their checked-out items</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Return Summary -->
+            <div class="returns-summary">
+                <h2><i class="fas fa-clipboard-check"></i> Return Summary</h2>
+                <div class="summary-card">
+                    <div class="summary-item">
+                        <span>Total Items:</span>
+                        <span id="return-items-count">0</span>
+                    </div>
+                    <div class="summary-item">
+                        <span>Overdue Items:</span>
+                        <span id="overdue-count">0</span>
+                    </div>
+                    <div class="summary-item">
+                        <span>Total Fines:</span>
+                        <span id="total-fines">$0.00</span>
+                    </div>
+                    <div class="summary-item total">
+                        <span>Items to Return:</span>
+                        <span id="return-total">0</span>
+                    </div>
+                    <button class="btn primary" id="process-return">
+                        <i class="fas fa-check-circle"></i> Process Return
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h3>LibraTech</h3>
+                    <p>Modern library management solution for schools, universities, and public libraries.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="../books/browse-books.html">Book Catalog</a></li>
+                        <li><a href="../members/manage-members.html">Member Directory</a></li>
+                        <li><a href="checkout.html">Checkout Books</a></li>
+                        <li><a href="../reports/overdue.html">Overdue Reports</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Support</h3>
+                    <ul>
+                        <li><a href="#">Documentation</a></li>
+                        <li><a href="#">API Reference</a></li>
+                        <li><a href="#">Help Center</a></li>
+                        <li><a href="#">Contact Us</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Newsletter</h3>
+                    <p>Subscribe to get updates on new features.</p>
+                    <form id="newsletter-form">
+                        <input type="email" placeholder="Your email address" required>
+                        <button type="submit" class="btn primary">Subscribe</button>
+                    </form>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 LibraTech. All rights reserved.</p>
+                <div class="footer-links">
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Return Modal -->
+    <div class="modal" id="return-modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2><i class="fas fa-exclamation-triangle"></i> Confirm Return</h2>
+            <p>Are you sure you want to process this return?</p>
+            <div class="modal-actions">
+                <button class="btn secondary" id="cancel-return">Cancel</button>
+                <button class="btn primary" id="confirm-return">Confirm</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="../scripts.js"></script>
+    <script>
+        // Mock data - Replace with MongoDB queries
+        const mockMember = {
+            id: "MEM20230003",
+            name: "Sarah Johnson",
+            avatar: "https://randomuser.me/api/portraits/women/44.jpg",
+            checkedOut: [
+                {
+                    bookId: "BK2023001",
+                    title: "The Great Gatsby",
+                    dueDate: "2023-09-20",
+                    returned: false,
+                    overdue: true,
+                    fine: 2.50
+                },
+                {
+                    bookId: "BK2023004",
+                    title: "1984",
+                    dueDate: "2023-09-25",
+                    returned: false,
+                    overdue: false,
+                    fine: 0.00
+                }
+            ]
+        };
+
+        let selectedReturns = [];
+
+        document.addEventListener('DOMContentLoaded', () => {
+            // Member Scanning
+            document.getElementById('scan-return-member').addEventListener('click', async () => {
+                const barcode = document.getElementById('return-member-barcode').value;
+                
+                // Simulate MongoDB lookup
+                // const member = await fetch(`/api/members/${barcode}`);
+                const member = mockMember;
+                
+                const memberHTML = `
+                    <div class="member-info">
+                        <div class="member-avatar">
+                            <img src="${member.avatar}" alt="${member.name}">
+                        </div>
+                        <div class="member-details">
+                            <h3>${member.name}</h3>
+                            <p>Member ID: ${member.id}</p>
+                            <div class="member-stats">
+                                <span>Checked-out Items: ${member.checkedOut.length}</span>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                document.getElementById('return-member-details').innerHTML = memberHTML;
+                updateCheckedoutItems(member.checkedOut);
+            });
+
+            // Process Return
+            document.getElementById('process-return').addEventListener('click', () => {
+                if(selectedReturns.length === 0) {
+                    alert('Please select items to return');
+                    return;
+                }
+                document.getElementById('return-modal').classList.add('show');
+            });
+
+            // Confirm Return
+            document.getElementById('confirm-return').addEventListener('click', async () => {
+                // Simulate MongoDB update
+                // await fetch('/api/returns', {
+                //     method: 'POST',
+                //     body: JSON.stringify({
+                //         memberId: mockMember.id,
+                //         items: selectedReturns
+                //     })
+                // });
+                
+                console.log('Processed returns:', selectedReturns);
+                alert('Return processed successfully!');
+                window.location.reload();
+            });
+        });
+
+        function updateCheckedoutItems(items) {
+            const itemsHTML = items.map(item => `
+                <div class="checkedout-item ${item.overdue ? 'overdue' : ''}">
+                    <div class="item-info">
+                        <h4>${item.title}</h4>
+                        <p>Due Date: ${new Date(item.dueDate).toLocaleDateString()}</p>
+                        ${item.overdue ? `<p class="fine">Fine: $${item.fine.toFixed(2)}</p>` : ''}
+                    </div>
+                    <div class="item-actions">
+                        <label class="checkbox-container">
+                            <input type="checkbox" ${item.returned ? 'disabled' : ''} 
+                                onchange="toggleReturn('${item.bookId}', ${item.overdue}, ${item.fine})">
+                            <span class="checkmark"></span>
+                            ${item.returned ? 'Returned' : 'Mark Returned'}
+                        </label>
+                        <select class="condition-select" onchange="updateCondition('${item.bookId}', this.value)">
+                            <option value="good">Good Condition</option>
+                            <option value="damaged">Damaged</option>
+                            <option value="lost">Lost</option>
+                        </select>
+                    </div>
+                </div>
+            `).join('');
+
+            document.getElementById('checkedout-items-list').innerHTML = itemsHTML;
+            updateReturnSummary();
+        }
+
+        function toggleReturn(bookId, isOverdue, fine) {
+            const checkbox = event.target;
+            const item = {
+                bookId,
+                returned: checkbox.checked,
+                condition: document.querySelector(`[data-book="${bookId}"]`).value,
+                fine: isOverdue ? fine : 0
+            };
+
+            if(checkbox.checked) {
+                selectedReturns.push(item);
+            } else {
+                selectedReturns = selectedReturns.filter(i => i.bookId !== bookId);
+            }
+            
+            updateReturnSummary();
+        }
+
+        function updateCondition(bookId, condition) {
+            const item = selectedReturns.find(i => i.bookId === bookId);
+            if(item) {
+                item.condition = condition;
+                updateReturnSummary();
+            }
+        }
+
+        function updateReturnSummary() {
+            const totalItems = selectedReturns.length;
+            const overdueItems = selectedReturns.filter(i => i.fine > 0).length;
+            const totalFines = selectedReturns.reduce((sum, item) => sum + item.fine, 0);
+
+            document.getElementById('return-items-count').textContent = totalItems;
+            document.getElementById('overdue-count').textContent = overdueItems;
+            document.getElementById('total-fines').textContent = `$${totalFines.toFixed(2)}`;
+            document.getElementById('return-total').textContent = totalItems;
+        }
+
+        // Modal handling
+        document.querySelector('#return-modal .close').addEventListener('click', () => {
+            document.getElementById('return-modal').classList.remove('show');
+        });
+
+        document.getElementById('cancel-return').addEventListener('click', () => {
+            document.getElementById('return-modal').classList.remove('show');
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Management | LibraTech</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="container">
+            <a href="index.html" class="logo">Libra<span>Tech</span></a>
+            <ul class="nav-links">
+                <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
+                <li><a href="books.html" class="active"><i class="fas fa-book"></i> Books</a></li>
+                <li><a href="members.html"><i class="fas fa-users"></i> Members</a></li>
+                <li><a href="loans.html"><i class="fas fa-exchange-alt"></i> Loans</a></li>
+                <li><a href="reports.html"><i class="fas fa-chart-bar"></i> Reports</a></li>
+                <li><a href="login.html" class="btn-login"><i class="fas fa-sign-in-alt"></i> Login</a></li>
+            </ul>
+            <div class="hamburger">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Books Section -->
+    <section class="module-section">
+        <div class="container">
+            <div class="module-header">
+                <h2>Book Management</h2>
+                <div class="module-actions">
+                    <div class="search-bar">
+                        <input type="text" placeholder="Search books...">
+                        <button><i class="fas fa-search"></i></button>
+                    </div>
+                    <button class="btn-primary" id="addBookBtn"><i class="fas fa-plus"></i> Add Book</button>
+                </div>
+            </div>
+            
+            <div class="module-filters">
+                <div class="filter-group">
+                    <label for="category">Category:</label>
+                    <select id="category">
+                        <option value="all">All Categories</option>
+                        <option value="fiction">Fiction</option>
+                        <option value="non-fiction">Non-Fiction</option>
+                        <option value="science">Science</option>
+                        <option value="history">History</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label for="availability">Availability:</label>
+                    <select id="availability">
+                        <option value="all">All</option>
+                        <option value="available">Available</option>
+                        <option value="checked-out">Checked Out</option>
+                    </select>
+                </div>
+                <button class="btn-secondary"><i class="fas fa-filter"></i> Apply Filters</button>
+            </div>
+            
+            <div class="module-content">
+                <div class="data-table">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Title</th>
+                                <th>Author</th>
+                                <th>ISBN</th>
+                                <th>Category</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="booksTableBody">
+                            <!-- Books will be loaded here from MongoDB -->
+                        </tbody>
+                    </table>
+                </div>
+                
+                <div class="pagination">
+                    <button disabled><i class="fas fa-angle-left"></i></button>
+                    <span class="active">1</span>
+                    <span>2</span>
+                    <span>3</span>
+                    <button><i class="fas fa-angle-right"></i></button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Add Book Modal -->
+    <div class="modal" id="addBookModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Add New Book</h3>
+                <span class="close-modal">&times;</span>
+            </div>
+            <div class="modal-body">
+                <form id="addBookForm">
+                    <div class="form-group">
+                        <label for="bookTitle">Title</label>
+                        <input type="text" id="bookTitle" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="bookAuthor">Author</label>
+                        <input type="text" id="bookAuthor" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="bookIsbn">ISBN</label>
+                        <input type="text" id="bookIsbn" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="bookCategory">Category</label>
+                        <select id="bookCategory" required>
+                            <option value="">Select Category</option>
+                            <option value="fiction">Fiction</option>
+                            <option value="non-fiction">Non-Fiction</option>
+                            <option value="science">Science</option>
+                            <option value="history">History</option>
+                            <option value="biography">Biography</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="bookCopies">Number of Copies</label>
+                        <input type="number" id="bookCopies" min="1" value="1" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="bookDescription">Description</label>
+                        <textarea id="bookDescription" rows="4"></textarea>
+                    </div>
+                    <div class="form-actions">
+                        <button type="button" class="btn-secondary close-modal-btn">Cancel</button>
+                        <button type="submit" class="btn-primary">Add Book</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h3>LibraTech</h3>
+                    <p>Modern library management solutions for the digital age.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="books.html">Books</a></li>
+                        <li><a href="members.html">Members</a></li>
+                        <li><a href="loans.html">Loans</a></li>
+                        <li><a href="reports.html">Reports</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Contact Us</h3>
+                    <ul>
+                        <li><i class="fas fa-map-marker-alt"></i> 123 Library St, Bookville</li>
+                        <li><i class="fas fa-phone"></i> (123) 456-7890</li>
+                        <li><i class="fas fa-envelope"></i> info@libratech.com</li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Newsletter</h3>
+                    <p>Subscribe to our newsletter for updates.</p>
+                    <form class="newsletter-form">
+                        <input type="email" placeholder="Your Email">
+                        <button type="submit"><i class="fas fa-paper-plane"></i></button>
+                    </form>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 LibraTech. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script src="js/db.js"></script>
+    <script>
+        // Load books from MongoDB
+        document.addEventListener('DOMContentLoaded', function() {
+            loadBooks();
+            
+            // Modal functionality
+            const modal = document.getElementById('addBookModal');
+            const btn = document.getElementById('addBookBtn');
+            const closeBtn = document.querySelector('.close-modal');
+            const closeModalBtn = document.querySelector('.close-modal-btn');
+            
+            btn.onclick = function() {
+                modal.style.display = 'block';
+            }
+            
+            closeBtn.onclick = function() {
+                modal.style.display = 'none';
+            }
+            
+            closeModalBtn.onclick = function() {
+                modal.style.display = 'none';
+            }
+            
+            window.onclick = function(event) {
+                if (event.target == modal) {
+                    modal.style.display = 'none';
+                }
+            }
+            
+            // Form submission
+            document.getElementById('addBookForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+                addBook();
+                modal.style.display = 'none';
+                this.reset();
+            });
+        });
+        
+        function loadBooks() {
+            // This would be replaced with actual MongoDB fetch
+            const books = [
+                { id: 'BK001', title: 'The Great Gatsby', author: 'F. Scott Fitzgerald', isbn: '9780743273565', category: 'Fiction', status: 'Available' },
+                { id: 'BK002', title: 'To Kill a Mockingbird', author: 'Harper Lee', isbn: '9780061120084', category: 'Fiction', status: 'Available' },
+                { id: 'BK003', title: '1984', author: 'George Orwell', isbn: '9780451524935', category: 'Fiction', status: 'Checked Out' },
+                { id: 'BK004', title: 'A Brief History of Time', author: 'Stephen Hawking', isbn: '9780553380163', category: 'Science', status: 'Available' },
+                { id: 'BK005', title: 'Sapiens', author: 'Yuval Noah Harari', isbn: '9780062316097', category: 'History', status: 'Available' }
+            ];
+            
+            const tableBody = document.getElementById('booksTableBody');
+            tableBody.innerHTML = '';
+            
+            books.forEach(book => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${book.id}</td>
+                    <td>${book.title}</td>
+                    <td>${book.author}</td>
+                    <td>${book.isbn}</td>
+                    <td><span class="badge category-${book.category.toLowerCase()}">${book.category}</span></td>
+                    <td><span class="badge status-${book.status.toLowerCase().replace(' ', '-')}">${book.status}</span></td>
+                    <td class="actions">
+                        <button class="btn-icon" title="View"><i class="fas fa-eye"></i></button>
+                        <button class="btn-icon" title="Edit"><i class="fas fa-edit"></i></button>
+                        <button class="btn-icon btn-danger" title="Delete"><i class="fas fa-trash"></i></button>
+                    </td>
+                `;
+                tableBody.appendChild(row);
+            });
+        }
+        
+        function addBook() {
+            // This would be replaced with actual MongoDB insert
+            const title = document.getElementById('bookTitle').value;
+            const author = document.getElementById('bookAuthor').value;
+            const isbn = document.getElementById('bookIsbn').value;
+            const category = document.getElementById('bookCategory').value;
+            
+            alert(`Book "${title}" by ${author} added successfully!`);
+            loadBooks(); // Refresh the list
+        }
+    </script>
+</body>
+</html>
