@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Browse Books | LibraTech</title>
-    <link rel="stylesheet" href="../styles.css">
-    <link rel="stylesheet" href="../books/books.css">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="books.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
@@ -14,12 +14,12 @@
         <div class="container">
             <a href="../index.html" class="logo">Libra<span>Tech</span></a>
             <div class="nav-links">
-                <a href="../index.html"><i class="fas fa-home"></i> Home</a>
+                <a href="index.html"><i class="fas fa-home"></i> Home</a>
                 <a href="browse-books.html" class="active"><i class="fas fa-book"></i> Books</a>
-                <a href="../members/manage-members.html"><i class="fas fa-users"></i> Members</a>
-                <a href="../transactions/checkout.html"><i class="fas fa-exchange-alt"></i> Transactions</a>
-                <a href="../reports/overdue.html"><i class="fas fa-chart-bar"></i> Reports</a>
-                <a href="../admin/dashboard.html"><i class="fas fa-cog"></i> Admin</a>
+                <a href="manage-members.html"><i class="fas fa-users"></i> Members</a>
+                <a href="checkout.html"><i class="fas fa-exchange-alt"></i> Transactions</a>
+                <a href="overdue.html"><i class="fas fa-chart-bar"></i> Reports</a>
+                <a href="dashboard.html"><i class="fas fa-cog"></i> Admin</a>
                 <a href="#" id="login-btn"><i class="fas fa-sign-in-alt"></i> Login</a>
             </div>
             <div class="hamburger">
@@ -90,7 +90,7 @@
                     <!-- Book items will be loaded here from MongoDB -->
                     <div class="book-item">
                         <div class="book-cover">
-                            <img src="../assets/book-covers/dune.jpg" alt="Dune Cover">
+                            <img src="dune.jpg" alt="Dune Cover">
                         </div>
                         <div class="book-info">
                             <h3>Dune</h3>
@@ -105,7 +105,7 @@
                             <a href="book-details.html?id=1" class="btn outline">
                                 <i class="fas fa-eye"></i> View
                             </a>
-                            <a href="../transactions/checkout.html?book=1" class="btn primary">
+                            <a href="checkout.html?book=1" class="btn primary">
                                 <i class="fas fa-exchange-alt"></i> Checkout
                             </a>
                         </div>
@@ -113,7 +113,7 @@
 
                     <div class="book-item">
                         <div class="book-cover">
-                            <img src="../assets/book-covers/to-kill-a-mockingbird.jpg" alt="To Kill a Mockingbird Cover">
+                            <img src="to-kill-a-mockingbird.jpg" alt="To Kill a Mockingbird Cover">
                         </div>
                         <div class="book-info">
                             <h3>To Kill a Mockingbird</h3>
@@ -128,7 +128,7 @@
                             <a href="book-details.html?id=2" class="btn outline">
                                 <i class="fas fa-eye"></i> View
                             </a>
-                            <a href="../transactions/checkout.html?book=2" class="btn primary">
+                            <a href="checkout.html?book=2" class="btn primary">
                                 <i class="fas fa-exchange-alt"></i> Checkout
                             </a>
                         </div>
@@ -136,7 +136,7 @@
 
                     <div class="book-item">
                         <div class="book-cover">
-                            <img src="../assets/book-covers/1984.jpg" alt="1984 Cover">
+                            <img src="1984.jpg" alt="1984 Cover">
                         </div>
                         <div class="book-info">
                             <h3>1984</h3>
@@ -194,9 +194,9 @@
                     <h3>Quick Links</h3>
                     <ul>
                         <li><a href="browse-books.html">Book Catalog</a></li>
-                        <li><a href="../members/manage-members.html">Member Directory</a></li>
-                        <li><a href="../transactions/checkout.html">Checkout Books</a></li>
-                        <li><a href="../reports/overdue.html">Overdue Reports</a></li>
+                        <li><a href="manage-members.html">Member Directory</a></li>
+                        <li><a href="checkout.html">Checkout Books</a></li>
+                        <li><a href="overdue.html">Overdue Reports</a></li>
                     </ul>
                 </div>
                 <div class="footer-col">
@@ -227,7 +227,8 @@
         </div>
     </footer>
 
-    <script src="../scripts.js"></script>
+    <script src="scripts.js"></script>
     <script src="books.js"></script>
 </body>
 </html>
+
